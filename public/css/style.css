@@ -147,7 +147,11 @@ header {
     background-color: #26292f;
   }
 }
-
+#imagen-header{background-image: url("/img/17450.jpg");
+  height: 700px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;}
 #main-nav, #cd-cart {
   position: fixed;
   top: 0;
