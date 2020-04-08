@@ -12,7 +12,7 @@ class PageController extends AbstractController
      */
     public function index()
     {
-        return $this->render('page/index.html', [
+        return $this->render('page/productos.html', [
             'controller_name' => 'PageController',
         ]);
     }
