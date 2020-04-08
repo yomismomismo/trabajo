@@ -67,7 +67,7 @@ xheader
 
 -------------------------------- */
 header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   height: 50px;
@@ -147,7 +147,11 @@ header {
     background-color: #26292f;
   }
 }
-
+#imagen-header{background-image: url("/img/17450.jpg");
+  height: 700px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;}
 #main-nav, #cd-cart {
   position: fixed;
   top: 0;
@@ -160,6 +164,12 @@ header {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 3;
 }
+/* .colo{
+  text-decoration: none !important;
+}
+.colo:hover{
+color: red !important;
+} */
 @media only screen and (min-width: 768px) {
   #main-nav, #cd-cart {
     width: 350px;
@@ -221,15 +231,16 @@ header {
     border-bottom: none;
     color: rgba(255, 255, 255, 0.8);
     border-radius: 0.25em;
+    transition: 0.3s;
   }
   #main-nav ul a.current {
     box-shadow: none;
-    background: #435779;
-    color: #FFF;
+    color: rgb(153, 150, 150);
   }
   .no-touch #main-nav ul a:hover {
-    background: #435779;
-    color: #FFF;
+    text-decoration: none;
+    transition: 0.3s;
+    color: rgb(175, 175, 175);
   }
 }
 .no-js #main-nav {

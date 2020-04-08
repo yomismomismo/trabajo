@@ -7,71 +7,48 @@
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Gem style -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="js/jquery-3.4.1.slim.min.js">
+	<link rel="stylesheet" href="js/bootstrap.min.js"> <!-- Gem style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	
   	
 	<title>Side Cart</title>
 </head>
 <body class="foo">
+
 	<header>
-		<div id="logo"><img src="img/cd-logo.svg" alt="Homepage"></div>
+		<div id="logo"><img src="img/Logo.png"  style="width: 240px; margin-top: -25px;" alt="Homepage"></div>
 
 		<div id="cd-hamburger-menu"><a class="cd-img-replace" href="#0">Menu</a></div>
 		<div id="cd-cart-trigger"><a class="cd-img-replace" href="#0">Cart</a></div>
-	</header>
 
 	<nav id="main-nav">
 		<ul>
-			<li><a href="#0">Home</a></li>
-			<li><a href="#0">About</a></li>
-			<li><a class="current" href="#0">Services</a></li>
-			<li><a href="#0">Gallery</a></li>
-			<li><a href="#0">Contact</a></li>
+			<li><a class="current" href="#0">Inicio</a></li>
+			<li><a href="#0">Productos</a></li>
+			<li><a href="#0">Servicios</a></li>
+			<li><a href="#0">Contacto</a></li>
+			<li><a href="#0" id="user" ><i class="far fa-user"></i></a></li>
+			<script src="https://kit.fontawesome.com/7bd9185960.js" crossorigin="anonymous"></script>
+			<li><a href="#0">Idioma</a></li>
 		</ul>
 	</nav>
+	
+</header>
 
-	<main>
-		<ul id="cd-gallery-items" class="cd-container">
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-
-			<li>
-				<img src="img/thumb.jpg" alt="Preview image">
-			</li>
-		</ul> <!-- cd-gallery-items -->
-	</main>
-
-	<div id="cd-shadow-layer"></div>
-
+<section>
+	<div class="container-fluid" style="padding-right: 0px; padding-left: 0px;">
+		<div class="jumbotron jumbotron-fluid"
+			style=" background-size: cover; background-repeat: no-repeat;height: 40em;margin-top: 0px">
+		</div>
+	</div>
+</section>
+	
+	
+	  <div id="cd-shadow-layer"></div>
 	<div id="cd-cart">
 		<h2>Cart</h2>
 		<ul class="cd-cart-items">
