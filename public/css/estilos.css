@@ -1,9 +1,9 @@
 footer{background-color: #31353d;
-    height: 205px;
+    height: 100%;
     -webkit-box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
     box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
-    margin-top: 57px;
+    margin-top:30px !important;
 }
 #rowFooter{
     margin-top: 40px;
