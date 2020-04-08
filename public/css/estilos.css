@@ -1,3 +1,20 @@
+footer{background-color: #31353d;
+    height: 205px;
+    -webkit-box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
+    box-shadow: 2px -7px 31px -7px rgba(0,0,0,0.75);
+    margin-top: 57px;
+}
+#rowFooter{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    color: white;
+
+}
+#DirecFooter{margin-bottom: 0px !important;
+    margin-top: 10px;
+color: white;}
 .jumbotron{
     background-color: red !important;
     
