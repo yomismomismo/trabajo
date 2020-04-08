@@ -164,6 +164,12 @@ header {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 3;
 }
+/* .colo{
+  text-decoration: none !important;
+}
+.colo:hover{
+color: red !important;
+} */
 @media only screen and (min-width: 768px) {
   #main-nav, #cd-cart {
     width: 350px;
@@ -225,15 +231,16 @@ header {
     border-bottom: none;
     color: rgba(255, 255, 255, 0.8);
     border-radius: 0.25em;
+    transition: 0.3s;
   }
   #main-nav ul a.current {
     box-shadow: none;
-    background: #435779;
-    color: #FFF;
+    color: rgb(153, 150, 150);
   }
   .no-touch #main-nav ul a:hover {
-    background: #435779;
-    color: #FFF;
+    text-decoration: none;
+    transition: 0.3s;
+    color: rgb(175, 175, 175);
   }
 }
 .no-js #main-nav {

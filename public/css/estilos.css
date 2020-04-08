@@ -14,3 +14,22 @@ footer{background-color: #31353d;
 #DirecFooter{margin-bottom: 0px !important;
     margin-top: 10px;
 color: white;}
+.jumbotron{
+    background-color: red !important;
+    
+}
+
+
+
+/* 
+@media only screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top:  50px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .jumbotron {
+        margin-top: 80px !important; 
+    }
+} */
