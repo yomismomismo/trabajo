@@ -36,4 +36,13 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
+        /**
+     * @Route("/contacto", name="contacto")
+     */
+    public function contacto()
+    {
+        return $this->render('page/contacto.html', [
+            'controller_name' => 'PageController',
+        ]);
+    }
 }
