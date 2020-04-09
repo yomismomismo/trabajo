@@ -15,6 +15,7 @@ class PageController extends AbstractController
         return $this->render('page/index.html', [
             'controller_name' => 'PageController',
         ]);
+        
     }
 
     /**
@@ -23,6 +24,15 @@ class PageController extends AbstractController
     public function productos()
     {
         return $this->render('page/productos.html', [
+            'controller_name' => 'PageController',
+        ]);
+    }
+    /**
+     * @Route("/detalleprodc", name="detalleprod")
+     */
+    public function detalleprod()
+    {
+        return $this->render('page/detalleProduct.html', [
             'controller_name' => 'PageController',
         ]);
     }
