@@ -27,6 +27,16 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
+
+    /**
+     * @Route("/servicios", name="servicios")
+     */
+    public function servicios()
+    {
+        return $this->render('page/servicios.html', [
+            'controller_name' => 'PageController',
+            ]);
+        }
     /**
      * @Route("/detalleprodc", name="detalleprod")
      */
