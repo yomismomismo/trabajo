@@ -14,10 +14,17 @@ footer{background-color: #31353d;
     margin-top: 10px;
     color: white;}
 
-.jumbotron{
-    background-color: red !important;
-    
-}
+
+
+
+
+/* .container-fluid{padding-left: 0px !important;
+padding-right: 0px !important;} */
+
+iframe{border: 0;
+    width: 100%;
+    margin-bottom: 95px;}
+
 
 .clearboth{
     clear: both;
@@ -27,4 +34,8 @@ h1{
     margin-top: 50px;
     margin-bottom: 35px ;
     text-align: center;
+}
+
+.catImg{
+    margin-top: 20px;
 }
