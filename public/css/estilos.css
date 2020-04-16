@@ -1,5 +1,5 @@
 footer{background-color: #31353d;
-    height: 100%;
+    height: 30%;
     box-shadow: -7px -1px 29px -3px rgba(0,0,0,0.75);
     margin-top:30px !important;
 }
@@ -21,9 +21,7 @@ footer{background-color: #31353d;
 /* .container-fluid{padding-left: 0px !important;
 padding-right: 0px !important;} */
 
-iframe{border: 0;
-    width: 100%;
-    margin-bottom: 95px;}
+
 
 
 .clearboth{
@@ -39,3 +37,66 @@ h1{
 .catImg{
     margin-top: 20px;
 }
+#mapa{
+    width: 100%;
+    margin-left: 84px;
+    margin-top: 103px;
+    height: 654px;
+}
+iframe{margin-top: 16px;
+    margin-bottom: 95px;
+    width: 653px;
+    height: 520px;}
+      /*Form-Contacto*/
+      .cajaContacto{margin-top: 98px;}
+      form{margin-top: 132px;
+        margin-right: 149px;
+    }
+        form>p{font-family: verdana;
+          margin-bottom: 3px;}
+      input{ width: 344px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;}
+        input:focus{border: solid 1px rgb(162, 162, 250);}
+        textarea{resize: none !important;
+          width:  345px;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          height: 91px;}
+#divbotonForm{  background-color: #7a994d;
+  box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
+  height: 60px;
+  margin-top: 15px;
+  width: 346px;
+  text-align: center;}
+  #divbotonForm:hover{background-color:#538449;}
+      /*--------End-Form-Contacto--------------------*/
+      #botonCompra{color: white;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: -7px;}
+      .map-responsive{
+        overflow:hidden;
+        padding-bottom:50%;
+        position:relative;
+        height:0;
+        margin-top: 130px;
+    }
+    .map-responsive iframe{
+        left:0;
+        top:0;
+        height:100%;
+        width:100%;
+        position:absolute;
+    }
+    .center-block {
+        display: table;
+        margin: auto;
+     }
