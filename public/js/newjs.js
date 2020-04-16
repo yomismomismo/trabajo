@@ -69,7 +69,7 @@ function updateQuantity(quantityInput)
 function removeItem(removeButton)
 {
   /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
+  var productRow = $(removeButton).parent().parent().parent();
   productRow.slideUp(fadeTime, function() {
     productRow.remove();
     recalculateCart();
