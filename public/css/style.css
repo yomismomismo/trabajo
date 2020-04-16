@@ -25,7 +25,7 @@ body.overflow-hidden {
   overflow: hidden;
 }
 
-a {
+li>a {
   color: #435779;
   text-decoration: none;
 }
@@ -224,7 +224,7 @@ color: red !important;
     margin-left: 1em;
   }
   #main-nav ul a {
-    display: inline-block;
+    display: block;
     height: auto;
     line-height: 1;
     padding: 1em 1.4em;
