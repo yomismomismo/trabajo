@@ -53,7 +53,7 @@ class PageController extends AbstractController
      */
     public function contacto()
     {
-        return $this->render('page/contacto.html', [
+        return $this->render('page/contacto.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'contacto'
         ]);
