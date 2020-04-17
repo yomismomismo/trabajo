@@ -53,6 +53,7 @@ class PageController extends AbstractController
     {
         return $this->render('page/contacto.html', [
             'controller_name' => 'PageController',
+            'page' => 'contacto'
         ]);
     }
     /**
