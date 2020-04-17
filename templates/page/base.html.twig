@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/ad58fc7f24.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{asset("bootstrap.min.css", "estilos")}}">
+    <script src="{{ asset("jquery-3.4.1.slim.min.js", "script") }}"></script>
+    <script src="{{ asset("bootstrap.js", "script") }}"></script>
+    <script src="{{ asset("popper.min.js", "script") }}" ></script>
+    <link rel="stylesheet" href="{{ asset("style.css", "estilos") }}">
+    <link rel="stylesheet" href="{{ asset("estilos.css", "estilos") }}">
+    <script src="{{ asset("ad58fc7f24.js", "script") }}"></script>
+    <link rel="icon" type="image/jpg" href="{{ asset("favicon.jpg", "imagen") }}">
+
+    <script src="{{ asset("jquery-3-4-1.min.js", "script") }}"></script>
+    <script src="{{ asset("modernizr.js", "script") }}"></script>
+    <script src="{{ asset("bootstrap.min.js", "script") }}"></script>
+
+
+
+		<title>{% block titulo %}{% endblock %}</title>
+
+	</head>
+
+	<body>
+        
+		{% block body %}{% endblock %}
+            <script src="{{ asset("cart-drop.js", "script") }}"></script>
+            <script src="{{ asset("newjs.js", "script") }}"></script>
+
+	</body>
+
+</html>
+
+

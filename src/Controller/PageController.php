@@ -12,8 +12,9 @@ class PageController extends AbstractController
      */
     public function index()
     {
-        return $this->render('page/index.html', [
+        return $this->render('page/index.html.twig', [
             'controller_name' => 'PageController',
+            'page' => 'index'
         ]);
         
     }
@@ -33,8 +34,9 @@ class PageController extends AbstractController
      */
     public function servicios()
     {
-        return $this->render('page/servicios.html', [
+        return $this->render('page/servicios.html.twig', [
             'controller_name' => 'PageController',
+            'page' => 'servicios'
             ]);
         }
     /**
