@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="{{ asset("estilos.css", "estilos") }}">
     <script src="{{ asset("ad58fc7f24.js", "script") }}"></script>
     <link rel="icon" type="image/jpg" href="{{ asset("favicon.jpg", "imagen") }}">
-
     <script src="{{ asset("jquery-3-4-1.min.js", "script") }}"></script>
     <script src="{{ asset("modernizr.js", "script") }}"></script>
     <script src="{{ asset("bootstrap.min.js", "script") }}"></script>
-
+    
+		{% block head %}{% endblock %}
 
 
 		<title>{% block titulo %}{% endblock %}</title>
