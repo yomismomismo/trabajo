@@ -24,8 +24,9 @@ class PageController extends AbstractController
      */
     public function productos()
     {
-        return $this->render('page/productos.html', [
+        return $this->render('page/productos.html.twig', [
             'controller_name' => 'PageController',
+            'page' => 'productos'
         ]);
     }
 
@@ -46,6 +47,7 @@ class PageController extends AbstractController
     {
         return $this->render('page/detalleProduct.html', [
             'controller_name' => 'PageController',
+            
         ]);
     }
     /**
