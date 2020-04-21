@@ -14,7 +14,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/index.html.twig', [
             'controller_name' => 'PageController',
-            'page' => 'index'
+            'page' => 'index',
+            'jumbotron' => 'no'
         ]);
         
     }
@@ -26,7 +27,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/productos.html.twig', [
             'controller_name' => 'PageController',
-            'page' => 'productos'
+            'page' => 'productos',
+            'jumbotron' => 'si'
         ]);
     }
 
@@ -37,7 +39,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/servicios.html.twig', [
             'controller_name' => 'PageController',
-            'page' => 'servicios'
+            'page' => 'servicios',
+            'jumbotron' => 'si'
             ]);
         }
     /**
@@ -47,7 +50,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
-            'page' => 'detalle'
+            'page' => 'detalle',
+            'jumbotron' => 'no'
         ]);
     }
     /**
@@ -57,7 +61,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/contacto.html.twig', [
             'controller_name' => 'PageController',
-            'page' => 'contacto'
+            'page' => 'contacto',
+            'jumbotron' => 'si'
         ]);
     }
     /**
@@ -65,8 +70,10 @@ class PageController extends AbstractController
      */
     public function carrito()
     {
-        return $this->render('page/carrito.html.twig', [
+        return $this->render('page/carrito.html', [
             'controller_name' => 'PageController',
+            'page' => 'carrito',
+            'jumbotron' => 'no'
         ]);
     }
 }
