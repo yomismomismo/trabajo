@@ -70,7 +70,7 @@ class PageController extends AbstractController
      */
     public function carrito()
     {
-        return $this->render('page/carrito.html', [
+        return $this->render('page/carrito.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'carrito',
             'jumbotron' => 'no'
