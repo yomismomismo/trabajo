@@ -67,6 +67,7 @@ class PageController extends AbstractController
     {
         return $this->render('page/carrito.html.twig', [
             'controller_name' => 'PageController',
+            'page' => 'carrito'
         ]);
     }
 }
