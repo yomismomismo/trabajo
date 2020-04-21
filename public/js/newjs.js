@@ -9,8 +9,8 @@ $('.product-quantity input').change( function() {
   updateQuantity(this);
 });
 
-$('.product-removal button').click( function() {
-  removeItem(this);
+$('.product-removal-drop button').click( function() {
+  removeItemDrop(this);
 });
 
 
@@ -66,7 +66,7 @@ function updateQuantity(quantityInput)
 
 
 /* Remove item from cart */
-function removeItem(removeButton)
+function removeItemDrop(removeButton)
 {
   /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent().parent();
@@ -74,4 +74,5 @@ function removeItem(removeButton)
     productRow.remove();
     recalculateCart();
   });
+
 }
