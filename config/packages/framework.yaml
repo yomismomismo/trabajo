@@ -18,7 +18,11 @@ framework:
         packages:
             estilos:
                 base_path: '/css'
+            estilosAdmin:
+                base_path: '/css/css-admin'
             script:
                 base_path: '/js'
+            scriptAdmin:
+                base_path: '/js/js-admin'
             imagen:
                 base_path: '/img'

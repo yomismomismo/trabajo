@@ -31,7 +31,7 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-button, #restartForm {
+#buttonForm, #restartForm {
   margin: 0;
   border: none;
   overflow: visible;
