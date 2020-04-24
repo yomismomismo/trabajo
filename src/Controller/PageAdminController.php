@@ -56,4 +56,14 @@ class PageAdminController extends AbstractController
             'controller_name' => 'PageAdminController',
         ]);
     }
+
+    /**
+     * @Route("/page/admin/usuarios", name="pedidos")
+     */
+    public function usuarios()
+    {
+        return $this->render('adminPage/usuarios.html.twig', [
+            'controller_name' => 'PageAdminController',
+        ]);
+    }
 }
