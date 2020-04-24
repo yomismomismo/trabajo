@@ -18,7 +18,7 @@ class PageAdminController extends AbstractController
     }
 
     /**
-     * @Route("/page/productosAdmin", name="productosAdmin")
+     * @Route("/page/admin/productosAdmin", name="productosAdmin")
      */
     public function productosAdmin()
     {
@@ -28,7 +28,7 @@ class PageAdminController extends AbstractController
     }
 
      /**
-     * @Route("/page/comentAdmin", name="comentAdmin")
+     * @Route("/page/admin/comentAdmin", name="comentAdmin")
      */
     public function comentAdmin()
     {
@@ -38,4 +38,22 @@ class PageAdminController extends AbstractController
     }
 
 
+    /**
+     * @Route("/page/admin/mensajes", name="mensajes")
+     */
+    public function mensajes()
+    {
+        return $this->render('adminPage/mensajes.html.twig', [
+            'controller_name' => 'PageAdminController',
+        ]);
+    }
+    /**
+     * @Route("/page/admin/pedidos", name="pedidos")
+     */
+    public function pedidos()
+    {
+        return $this->render('adminPage/pedidos.html.twig', [
+            'controller_name' => 'PageAdminController',
+        ]);
+    }
 }
