@@ -16,4 +16,26 @@ class PageAdminController extends AbstractController
             'controller_name' => 'PageAdminController',
         ]);
     }
+
+    /**
+     * @Route("/page/productosAdmin", name="productosAdmin")
+     */
+    public function productosAdmin()
+    {
+        return $this->render('adminPage/prodcAdmin.html.twig', [
+            'controller_name' => 'PageController',
+        ]);
+    }
+
+     /**
+     * @Route("/page/comentAdmin", name="comentAdmin")
+     */
+    public function comentAdmin()
+    {
+        return $this->render('adminPage/comentAdmin.html.twig', [
+            'controller_name' => 'PageController',
+        ]);
+    }
+
+
 }
