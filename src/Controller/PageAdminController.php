@@ -58,11 +58,11 @@ class PageAdminController extends AbstractController
     }
 
     /**
-     * @Route("/page/admin/usuarios", name="pedidos")
+     * @Route("/page/admin/usuarios", name="usuarios")
      */
     public function usuarios()
     {
-        return $this->render('adminPage/usuarios.html.twig', [
+        return $this->render('adminPage/usuariosAdmin.html.twig', [
             'controller_name' => 'PageAdminController',
         ]);
     }
