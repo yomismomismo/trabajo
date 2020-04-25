@@ -56,4 +56,13 @@ class PageAdminController extends AbstractController
             'controller_name' => 'PageAdminController',
         ]);
     }
+    /**
+     * @Route("/page/admin/loginAdmin", name="loginAdmin")
+     */
+    public function loginAdmin()
+    {
+        return $this->render('adminPage/loginAdmin.html.twig', [
+            'controller_name' => 'PageAdminController',
+        ]);
+    }
 }

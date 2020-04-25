@@ -59,7 +59,7 @@ class PageController extends AbstractController
      */
     public function contacto()
     {
-        return $this->render('page/contacto.html.twig', [
+        return $this->render('page/contacto.html', [
             'controller_name' => 'PageController',
             'page' => 'contacto',
             'jumbotron' => 'si'
@@ -71,6 +71,17 @@ class PageController extends AbstractController
     public function carrito()
     {
         return $this->render('page/carrito.html.twig', [
+            'controller_name' => 'PageController',
+            'page' => 'carrito',
+            'jumbotron' => 'no'
+        ]);
+    }
+        /**
+     * @Route("/login", name="login")
+     */
+    public function login()
+    {
+        return $this->render('page/login.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'carrito',
             'jumbotron' => 'no'
