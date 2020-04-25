@@ -81,7 +81,14 @@ class PageController extends AbstractController
      */
     public function login()
     {
-        return $this->render('page/login.html.twig', [
+        return $this->render('page/login.html.twig', []);}
+
+    /**
+     * @Route("/pruebainicio", name="pruebainicio")
+     */
+    public function pruebainicio()
+    {
+        return $this->render('page/pruebainicio.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'carrito',
             'jumbotron' => 'no'
