@@ -23,11 +23,24 @@ console.log(elemento);
 
 function mostrar() {
   document.getElementsByClassName("wrapper")[0].style.visibility = "visible";
-  document.getElementsByClassName("cd-shadow-layer")[0].style.display = "block";
-  document.getElementsByClassName("cd-shadow-layer")[0].style.zIndex = "4";
+  document.getElementsByClassName("lg-shadow-layer")[0].style.visibility = "visible";
+  document.getElementsByClassName("lg-shadow-layer")[0].style.zIndex = "16";
+  document.getElementsByClassName("wrapper")[0].style.cursor = "pointer"; 
+
 }
 
 function oculto() {
   document.getElementsByClassName("wrapper")[0].style.visibility = "hidden";
-  document.getElementsByClassName("cd-shadow-layer")[0].style.display = "none";
+  document.getElementsByClassName("lg-shadow-layer")[0].style.visibility = "hidden";
+
 }
+
+document.getElementsByClassName("wrapper")[0].addEventListener("click", function(){
+    if (event.target.tagName === "ARTICLE") {
+      document.getElementsByClassName("wrapper")[0].style.visibility = "hidden";
+      document.getElementsByClassName("lg-shadow-layer")[0].style.visibility = "hidden";
+    }
+
+
+
+}); 
