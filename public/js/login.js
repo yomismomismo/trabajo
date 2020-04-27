@@ -23,8 +23,11 @@ console.log(elemento);
 
 function mostrar() {
   document.getElementsByClassName("wrapper")[0].style.visibility = "visible";
+  document.getElementsByClassName("cd-shadow-layer")[0].style.display = "block";
+  document.getElementsByClassName("cd-shadow-layer")[0].style.zIndex = "4";
 }
 
 function oculto() {
   document.getElementsByClassName("wrapper")[0].style.visibility = "hidden";
+  document.getElementsByClassName("cd-shadow-layer")[0].style.display = "none";
 }
