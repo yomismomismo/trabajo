@@ -10,7 +10,7 @@
   * {
     box-sizing: border-box;
   }
-  .cd-shadow-layer{position: fixed;
+  .lg-shadow-layer{position: fixed;
 min-height: 100%;
 width: 100%;
 top: 0;
@@ -18,7 +18,7 @@ left: 0;
 background: rgba(67, 87, 121, 0.6);
 cursor: pointer;
 z-index: 2;
-display: block;}
+visibility: hidden;}
   .wrapper {
     display: flex;
     visibility: hidden;

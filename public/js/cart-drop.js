@@ -5,6 +5,7 @@ jQuery(document).ready(function($){
 		$cart_trigger = $('#cd-cart-trigger'),
 		$hamburger_icon = $('#cd-hamburger-menu'),
 		$lateral_cart = $('#cd-cart'),
+		$usuario = $('#user'),
 		$shadow_layer = $('#cd-shadow-layer');
 
 	//open lateral menu on mobile
@@ -27,12 +28,30 @@ jQuery(document).ready(function($){
 	$shadow_layer.on('click', function(){
 		$shadow_layer.removeClass('is-visible');
 		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
-		if( $lateral_cart.hasClass('speed-in') ) {
+		if( $lateral_cart.hasClass('speed-in' ) ) {
 			$lateral_cart.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
 				$('body').removeClass('overflow-hidden');
 			});
 			$menu_navigation.removeClass('speed-in');
-		} else {
+		} 
+		else {
+			$menu_navigation.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').removeClass('overflow-hidden');
+			});
+			$lateral_cart.removeClass('speed-in');
+		}
+	});
+// cerrado login
+	$usuario.on('click', function(){
+		$shadow_layer.removeClass('is-visible');
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		if( $lateral_cart.hasClass('speed-in' ) ) {
+			$lateral_cart.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').removeClass('overflow-hidden');
+			});
+			$menu_navigation.removeClass('speed-in');
+		} 
+		else {
 			$menu_navigation.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
 				$('body').removeClass('overflow-hidden');
 			});
