@@ -68,6 +68,14 @@ class PageController extends AbstractController
      */
     public function contacto()
     {
+        $contactoTo=new Mensaje();
+        $form=$this->CreateForm(EnvioContactoType::Class, $contactoTo);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager=$this->getDoctrine()->getManager();
+            $contactoTo->setFecha(new \DateTime('now'));
+            $entityManager->persist($contactoTo);
+            $entityManager->flush();}
         return $this->render('page/contacto.html', [
             'controller_name' => 'PageController',
             'page' => 'contacto',

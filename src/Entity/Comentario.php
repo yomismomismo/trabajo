@@ -38,6 +38,11 @@ class Comentario
      */
     private $comentario;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $fecha;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Comentario
     public function setComentario(string $comentario): self
     {
         $this->comentario = $comentario;
+
+        return $this;
+    }
+
+    public function getFecha(): ?\DateTimeInterface
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha(\DateTimeInterface $fecha): self
+    {
+        $this->fecha = $fecha;
 
         return $this;
     }
