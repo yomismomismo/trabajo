@@ -48,6 +48,15 @@ class PageController extends AbstractController
      */
     public function detalleprod()
     {
+        $contactoTo=new Comentario();
+        $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager=$this->getDoctrine()->getManager();
+            $contactoTo->setFecha(new \DateTime('now'));
+            $entityManager->persist($contactoTo);
+            $entityManager->flush();}
+
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'detalle',
