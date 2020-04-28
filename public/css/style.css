@@ -221,27 +221,27 @@ color: red !important;
     z-index: 4;
   }
   #main-nav li {
-    display: inline-block;
-    margin-left: 1em;
+    display: inline-block !important;
+    margin-left: 1em !important;
   }
   #main-nav ul a {
-    display: block;
-    height: auto;
-    line-height: 1;
-    padding: 1em 1.4em;
-    border-bottom: none;
-    color: rgba(255, 255, 255, 0.8);
-    border-radius: 0.25em;
-    transition: 0.3s;
+    display: block !important;
+    height: auto !important;
+    line-height: 1 !important;
+    padding: 1em 1.4em !important;
+    border-bottom: none !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0.25em !important;
+    transition: 0.3s !important;
   }
   #main-nav ul a.current {
     box-shadow: none;
-    color: rgb(153, 150, 150);
+    color: rgb(153, 150, 150) !important;
   }
   .no-touch #main-nav ul a:hover {
-    text-decoration: none;
-    transition: 0.3s;
-    color: rgb(175, 175, 175);
+    text-decoration: none !important;
+    transition: 0.3s !important;
+    color: rgb(175, 175, 175) !important;
   }
 }
 .no-js #main-nav {

@@ -62,7 +62,7 @@ $(validate => {
     // Runs our phone var through an array to auto format it
     $(function () {
       phone.keyup(function () {
-        this.value = this.value.replace(/(\d{3})\-?(\d{2})\-?(\d{2})\-?(\d{2})/, '$1-$2-$3-$4');
+        this.value = this.value.replace(/(\d{9})/, '$1');
         //alert ("OK");
       });
     });
@@ -99,7 +99,7 @@ $(validate => {
       messages: {
         minlength: msg("Minimum four \(4\) characters, please."),
         maxlength: msg("Maxmimum twelve \(12\) characters, please."),
-        zipcodeUS: msg("The US ZIP Code is invalid, please try the format \"12345\" or \"12345-6789\"") } });
+        zipcodeUS: msg("El código postal introducido es incorrecto \"12345\"") } });
   
   
   
