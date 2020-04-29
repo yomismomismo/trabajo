@@ -6,7 +6,7 @@ $(validate => {
 
     // -----------------------------------------
     // ## FORM VALIDATION => Variables
-    let form = $("#submissionForm");
+
     let firstName = $("#firstName");
     let lastName = $("#lastName");
     let name = $("#firstName, #lastName");
@@ -133,7 +133,7 @@ $(validate => {
     button.on("click", e => {
       if (form.valid() === true) {// check if form is valid via validator
         formPage.fadeOut(); // fadeOut contactForm section
-        thx.delay(400).fadeIn(); // delay 400ms then fadeIn thankYou section
+        thx.delay(1).fadeIn(); // delay 400ms then fadeIn thankYou section
       } else {
           null; // if form is invalid, do nothing (validator will show errors)
         }

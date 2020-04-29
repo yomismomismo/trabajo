@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Repository\{MensajeRepository, PedidosRepository};
 class PageAdminController extends AbstractController
 {
     /**
@@ -14,7 +14,7 @@ class PageAdminController extends AbstractController
     {
         return $this->render('adminPage/indexAdmin.html.twig', [
             'controller_name' => 'PageAdminController',
-        ]);
+             ]);
     }
 
     /**
@@ -41,19 +41,22 @@ class PageAdminController extends AbstractController
     /**
      * @Route("/page/admin/mensajes", name="mensajes")
      */
-    public function mensajes()
+    public function mensajes(MensajeRepository $mensajeRepository)
     {
         return $this->render('adminPage/mensajes.html.twig', [
             'controller_name' => 'PageAdminController',
+            'mensajes' => $mensajeRepository->findAll(),
+
         ]);
     }
     /**
      * @Route("/page/admin/pedidos", name="pedidos")
      */
-    public function pedidos()
+    public function pedidos(PedidosRepository $pedidosRepository)
     {
         return $this->render('adminPage/pedidos.html.twig', [
             'controller_name' => 'PageAdminController',
+            'pedidos' => $pedidosRepository->findAll(),
         ]);
     }
     /**

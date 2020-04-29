@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\{Mensaje, Comentario};
+use App\Form\{MensajeType, ComentarioType};
 
 class PageController extends AbstractController
 {
@@ -46,7 +49,7 @@ class PageController extends AbstractController
     /**
      * @Route("/detalleprodc", name="detalleprod")
      */
-    public function detalleprod()
+    public function detalleprod(Request $request)
     {
         $contactoTo=new Comentario();
         $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
@@ -60,25 +63,30 @@ class PageController extends AbstractController
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'detalle',
-            'jumbotron' => 'no'
+            'form' => $form->CreateView(),
+            'jumbotron' => 'no',
         ]);
     }
     /**
      * @Route("/contacto", name="contacto")
      */
-    public function contacto()
+    public function contacto(Request $request)
     {
+        $contactoBBDD=$this->getDoctrine()->getRepository(Mensaje::Class)->findAll();
         $contactoTo=new Mensaje();
-        $form=$this->CreateForm(EnvioContactoType::Class, $contactoTo);
+        $form=$this->CreateForm(MensajeType::Class, $contactoTo);
         $form->handleRequest($request);
+        dump($form);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $contactoTo->setFecha(new \DateTime('now'));
             $entityManager->persist($contactoTo);
             $entityManager->flush();}
-        return $this->render('page/contacto.html', [
+
+        return $this->render('page/contacto.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'contacto',
+            'form' => $form->CreateView(),
             'jumbotron' => 'si'
         ]);
     }
