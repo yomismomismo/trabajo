@@ -79,11 +79,11 @@
 		        			<div class="product-name">Variable Product</div>
 		        			<div class="reviews-counter">
 								<div class="rate">
-								    <input type="radio" id="star5" name="rate" value="5" checked />
+								    <input type="radio" id="star5" name="rate" value="5" />
 								    <label for="star5" title="text">5 stars</label>
-								    <input type="radio" id="star4" name="rate" value="4" checked />
+								    <input type="radio" id="star4" name="rate" value="4"/>
 								    <label for="star4" title="text">4 stars</label>
-								    <input type="radio" id="star3" name="rate" value="3" checked />
+								    <input type="radio" id="star3" name="rate" value="3"  checked/>
 								    <label for="star3" title="text">3 stars</label>
 								    <input type="radio" id="star2" name="rate" value="2" />
 								    <label for="star2" title="text">2 stars</label>
@@ -96,7 +96,7 @@
 		        		</div>
 	        			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	        			<div class="row">
-	        				<div class="col-md-6">
+	        				{# <div class="col-md-6">
 	        					<label for="size">Size</label>
 								<select id="size" name="size" class="form-control">
 									<option>S</option>
@@ -112,7 +112,7 @@
 									<option>Green</option>
 									<option>Red</option>
 								</select>
-	        				</div>
+	        				</div> #}
 	        			</div>
 	        			<div class="product-count">
 	        				<label for="size">Quantity</label>
@@ -142,29 +142,22 @@
 				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 				  		<div class="review-heading">REVIEWS</div>
 				  		<p class="mb-20">There are no reviews yet.</p>
-				  		<form class="review-form">
+				  		{# <form class="review-form"> #}
+						   {{form_start(form, {'attr':{'class':"review-form", "action":""}})}}
 		        			<div class="form-group">
 			        			<label>Your rating</label>
 			        			<div class="reviews-counter">
 									<div class="rate">
-									    <input type="radio" id="star5" name="rate" value="5" />
-									    <label for="star5" title="text">5 stars</label>
-									    <input type="radio" id="star4" name="rate" value="4" />
-									    <label for="star4" title="text">4 stars</label>
-									    <input type="radio" id="star3" name="rate" value="3" />
-									    <label for="star3" title="text">3 stars</label>
-									    <input type="radio" id="star2" name="rate" value="2" />
-									    <label for="star2" title="text">2 stars</label>
-									    <input type="radio" id="star1" name="rate" value="1" />
-									    <label for="star1" title="text">1 star</label>
+										{{form_widget(form.puntuacion, {'attr':{'class':"rate", 'id':'star', 'name':'star2', 'required':''}})}}
 									</div>
 								</div>
 							</div>
 		        			<div class="form-group">
 			        			<label>Your message</label>
-			        			<textarea class="form-control" rows="10"></textarea>
+								{{form_widget(form.comentario, {'attr':{'class':"form-control", 'required':'', 'rows':'10'}})}}
+			        			{# <textarea class="form-control" rows="10"></textarea> #}
 			        		</div>
-			        		<div class="row">
+			        		{# <div class="row">
 				        		<div class="col-md-6">
 				        			<div class="form-group">
 					        			<input type="text" name="" class="form-control" placeholder="Name*">
@@ -175,9 +168,15 @@
 					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
 					        		</div>
 					        	</div>
-					        </div>
-					        <button class="round-black-btn">Submit Review</button>
-			        	</form>
+					        </div> #}
+							 {{form_widget(form.send, {'attr':{'class':'round-black-btn', 'placeholder':'Enviar Comentario',  'type':'submit'}})}}
+							 {# {{form_widget(form.id_usuario, {'attr':{'class':'round-black-btn', 'value':'hola'}})}} #}
+							 {{form_widget(form.id_usuario, {'attr':{'class':"rate", 'id':'star', 'name':'sta1', 'required':''}})}}
+							 {{form_widget(form.id_producto, {'attr':{'class':"rate", 'id':'star', 'name':'sta2', 'required':''}})}}
+							{# {{form_widget(form.id_producto, {'attr':{'class':'round-black-btn', 'value':'hola'}})}} #}
+					        {# <button class="round-black-btn">Submit Review</button> #}
+							{{form_end(form)}}
+			        	{# </form> #}
 				  	</div>
 				</div>
 			</div>

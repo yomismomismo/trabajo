@@ -107,4 +107,9 @@ class Comentario
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getIdUsuario();
+        // return $this->id_producto;
+    }
 }
