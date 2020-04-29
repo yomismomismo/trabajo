@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\{Mensaje,Comentario};
+use App\Form\{MensajeType,ComentarioType};
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends AbstractController
 {
@@ -46,7 +49,7 @@ class PageController extends AbstractController
     /**
      * @Route("/detalleprodc", name="detalleprod")
      */
-    public function detalleprod()
+    public function detalleprod(Request $request)
     {
         $contactoTo=new Comentario();
         $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
@@ -60,6 +63,7 @@ class PageController extends AbstractController
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'detalle',
+            'form' => $form->CreateView(),
             'jumbotron' => 'no'
         ]);
     }
@@ -79,6 +83,7 @@ class PageController extends AbstractController
         return $this->render('page/contacto.html', [
             'controller_name' => 'PageController',
             'page' => 'contacto',
+            'form' => $form->CreateView(),
             'jumbotron' => 'si'
         ]);
     }
