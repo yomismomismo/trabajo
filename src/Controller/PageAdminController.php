@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository};
+use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository};
 use Symfony\Component\HttpFoundation\Request;
 class PageAdminController extends AbstractController
 {
