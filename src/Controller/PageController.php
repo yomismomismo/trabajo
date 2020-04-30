@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\{Mensaje,Comentario};
+use App\Entity\{Mensaje,Comentario, Usuario, Producto};
 use App\Form\{MensajeType,ComentarioType};
 use Symfony\Component\HttpFoundation\Request;
 
@@ -53,12 +53,40 @@ class PageController extends AbstractController
     {
         $contactoTo=new Comentario();
         $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
+
+        $filtroUsuario=$this->getDoctrine()
+
+        ->getRepository(Usuario::Class)
+        ->findBy(
+            ['id' => "1"], 
+            ['id' => 'ASC']
+          );
+
+          $filtroProducto=$this->getDoctrine()
+
+          ->getRepository(Producto::Class)
+          ->findBy(
+              ['id' => "1"], 
+              ['id' => 'ASC']
+            );
+
+
+
+
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $contactoTo->setFecha(new \DateTime('now'));
+            foreach ($filtroUsuario as $userid) {
+                $contactoTo->setIdUsuario($userid);
+              }
+              foreach ($filtroProducto as $productoid) {
+                $contactoTo->setIdProducto($productoid);
+              }
+            // $contactoTo->setIdProducto('1');
             $entityManager->persist($contactoTo);
             $entityManager->flush();}
+            
 
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
@@ -98,7 +126,7 @@ class PageController extends AbstractController
             'jumbotron' => 'no'
         ]);
     }
-        /**
+    /**
      * @Route("/login", name="login")
      */
     public function login()
