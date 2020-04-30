@@ -27,22 +27,26 @@
     </p>
     
     <!--  START FORM  -->
-    <form id="submissionForm" class="form" action="/" method="post" autocomplete="on">
+     {{form_start(form, {'attr':{'class':"form", 'action':'', "id":"submissionForm", "autocomplete":"on"}})}}
+    {# <form id="submissionForm" class="form" action="/" method="post" autocomplete="on"> #}
       <legend for="submissionForm">Contáctanos</legend>
   
       <!--   FORM => First/last name   -->
+      
       <div id="formNames" class="form-group width-1-1 child-width-1-2">
         <div>
           <label class="form-label" for="firstName">
             Nombre<abbr title="required">*</abbr>
           </label>
-          <input id="firstName" class="form-element" name="given-name" type="text" autocomplete="given-name" placeholder="John? Jacob?" tabindex="1" required aria-required="true" autofocus />
+          {# <input id="firstName" class="form-element" name="given-name" type="text" autocomplete="given-name" placeholder="John? Jacob?" tabindex="1" required aria-required="true" autofocus /> #}
+            {{form_widget(form.nombre, {'attr':{'class':'form-element', "id":"firstName", "name":"given-name", "autocomplete":"given-name", 'placeholder':'Nombre', "tabindex":"1", 'required':'', "aria-required":"true", "autofocus":""}})}}
         </div>
         <div>
           <label class="form-label" for="lastName">
             Apellidos<abbr title="required">*</abbr>
           </label>
-          <input id="lastName" class="form-element" name="family-name" type="text" autocomplete="family-name" placeholder="Jingleheimer Schmidt?" tabindex="2" required aria-required="true" />
+          {{form_widget(form.apellido, {'attr':{'class':'form-element', "id":"lastName", "name":"family-name", "autocomplete":"family-name", 'placeholder':'Apellidos', "tabindex":"2", 'required':'', "aria-required":"true", "autofocus":""}})}}
+          {# <input id="lastName" class="form-element" name="family-name" type="text" autocomplete="family-name" placeholder="Jingleheimer Schmidt?" tabindex="2" required aria-required="true" /> #}
         </div>
       </div>
   
@@ -52,20 +56,24 @@
           <label class="form-label" for="emailAddress">
             Email<abbr title="required">*</abbr>
           </label>
-          <input id="emailAddress" class="form-element" name="emailAddress" type="email" autocomplete="on" placeholder="yourname@gmail(probably).com" tabindex="3" required aria-required="true" />
+          {{form_widget(form.email, {'attr':{'class':'form-element', "id":"lastName", "name":"emailAddress", "autocomplete":"emailAddress",'placeholder':'Apellidos', "tabindex":"3", 'required':'', "aria-required":"true", "autofocus":""}})}}
+          {# <input id="emailAddress" class="form-element" name="emailAddress" type="email" autocomplete="on" placeholder="yourname@gmail(probably).com" tabindex="3" required aria-required="true" /> #}
+          
         </div>
         <div>
           <label class="form-label" for="phoneNumber">
             Número de télefono<abbr title="required">*</abbr>
           </label>
-          <input id="phoneNumber" class="form-element" name="phoneNumber" type="tel" autocomplete="on" placeholder="000-00-00-00" tabindex="4" required aria-required="true" />
+          {{form_widget(form.telefono, {'attr':{'id':'phoneNumber', 'class':'form-element','name':'phoneNumber' ,'type':'tel', "autocomplete":"on", 'placeholder':'000-00-00-00', "tabindex":"4", 'required':'', "aria-required":"true", "autofocus":"",  "minlength":"9", 'maxlength':'9'}})}}
+          {# <input id="phoneNumber" class="form-element" name="phoneNumber" type="tel" autocomplete="on" placeholder="000-00-00-00" tabindex="4" required aria-required="true" maxlength="9" /> #}
         </div>
       </div>
   
       <!--   FORM => Address line 1 & 2   -->
           <label class="form-label" for="mensaje">Mensaje<abbr title="required">*</abbr></label>
           <div id="divTextarea">
-          <textarea id="mensaje" class="form-element" name="" id="" cols="40" rows="10" required placeholder="Apartment number, suite, PO Box, etc." tabindex="9" aria-required="false" style="width: 100%;"></textarea>
+          {{form_widget(form.mensaje, {'attr':{'class':'form-element', 'maxlength':'150', 'id':'mensaje', 'cols':'40', 'rows':'10', 'placeholder':'000-00-00-00', "tabindex":"9", 'required':'', "aria-required":"false", "autofocus":"", 'style':'width:100%'}})}}
+          {# <textarea id="mensaje" class="form-element" name="" id="" cols="40" rows="10" required placeholder="Apartment number, suite, PO Box, etc." tabindex="9" aria-required="false" style="width: 100%;"></textarea> #}
         </div>
 
         <!-- FORM => City, state, and ZIP  
@@ -156,7 +164,9 @@
       <!--   FORM => Action buttons (submit/reset)   -->
       <div id="formButtons" class="form-group form-buttons">
         <div>
-          <button id="buttonForm" type="submit" name="Submit" value="Submit form" tabindex="14" itemprop="significantLink">Enviar</button>
+                {# {{form_widget(form.send, {'attr':{'id':'buttonForm', 'placeholder':'Enviar', 'name':'Submit', 'value':'Submit form','itemprop':'significantLink','type':'submit'}})}} #}
+                {{form_widget(form.send, {'attr':{'class':'btn bot', 'placeholder':'Enviar',  'type':'submit'}})}}
+          {# <button id="buttonForm" type="submit" name="Submit" value="Submit form" tabindex="14" itemprop="significantLink">Enviar</button> #}
         </div>
         <div>
           <button id="buttonForm" type="reset" name="Reset" value="Clear form" tabindex="15">Borrar</button>
@@ -168,7 +178,7 @@
         <p class="info"><abbr title="required">*</abbr>El asterisco rojo significa que es un campo <span> obligatorio</span>.</p>
       </div>
       
-    </form>
+         {{form_end(form)}}
 
     <p id="guion" class="linea"><span>O contacta con nosotros mediante</span></p>
 

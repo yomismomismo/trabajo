@@ -6,17 +6,19 @@ use App\Entity\Mensaje;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\{SubmitType, HiddenType, TextType, EmailType, TextareaType};
 class MensajeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('apellido')
-            ->add('telefono')
-            ->add('email')
-            ->add('mensaje')
+            ->add('nombre',TextType::class)
+            ->add('apellido',TextType::class)
+            ->add('telefono',TextType::class)
+            ->add('email', EmailType::class)
+            ->add('mensaje', TextareaType::class)
+            ->add('fecha', HiddenType::Class, ['mapped' => false])
+            ->add('send', SubmitType::class)
         ;
     }
 

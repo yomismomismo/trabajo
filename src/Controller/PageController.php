@@ -92,23 +92,26 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
             'page' => 'detalle',
             'form' => $form->CreateView(),
-            'jumbotron' => 'no'
+            'jumbotron' => 'no',
         ]);
     }
     /**
      * @Route("/contacto", name="contacto")
      */
-    public function contacto()
+    public function contacto(Request $request)
     {
+        $contactoBBDD=$this->getDoctrine()->getRepository(Mensaje::Class)->findAll();
         $contactoTo=new Mensaje();
-        $form=$this->CreateForm(EnvioContactoType::Class, $contactoTo);
+        $form=$this->CreateForm(MensajeType::Class, $contactoTo);
         $form->handleRequest($request);
+        dump($form);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $contactoTo->setFecha(new \DateTime('now'));
             $entityManager->persist($contactoTo);
             $entityManager->flush();}
-        return $this->render('page/contacto.html', [
+
+        return $this->render('page/contacto.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'contacto',
             'form' => $form->CreateView(),

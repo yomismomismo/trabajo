@@ -17,7 +17,7 @@ class Pedidos
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\usuario", inversedBy="pedidosRL")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario", inversedBy="pedidosRL")
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_cliente;
