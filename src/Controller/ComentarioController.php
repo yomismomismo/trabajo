@@ -89,6 +89,6 @@ class ComentarioController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('comentario_index');
+        return $this->redirectToRoute('comentAdmin');
     }
 }

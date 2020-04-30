@@ -31,10 +31,11 @@ class PageAdminController extends AbstractController
      /**
      * @Route("/page/admin/comentAdmin", name="comentAdmin")
      */
-    public function comentAdmin()
+    public function comentAdmin(ComentarioRepository $comentarioRepository)
     {
         return $this->render('adminPage/comentAdmin.html.twig', [
             'controller_name' => 'PageController',
+            'comentarios' => $comentarioRepository->findAll(),
         ]);
     }
 
