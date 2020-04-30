@@ -5,8 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\{Mensaje, Comentario};
-use App\Form\{MensajeType, ComentarioType};
+use App\Entity\{Mensaje, Comentario, Usuario};
+use App\Form\{MensajeType, ComentarioType, UsuarioType};
 
 class PageController extends AbstractController
 {
@@ -104,11 +104,23 @@ class PageController extends AbstractController
         /**
      * @Route("/login", name="login")
      */
-    public function login()
+    public function login(Request $request)
     {
-        return $this->render('page/login.html.twig', [
+        $contactoBBDD=$this->getDoctrine()->getRepository(Usuario::Class)->findAll();
+        $contactoTo=new Usuario();
+        $form=$this->CreateForm(UsuarioType::Class, $contactoTo);
+        $form->handleRequest($request);
+        dump($form);
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager=$this->getDoctrine()->getManager();
+            $contactoTo->setFechaRegistro(new \DateTime('now'));
+            $entityManager->persist($contactoTo);
+            $entityManager->flush();}
+
+        return $this->render('page/registro.html.twig', [
             'page' => 'carrito',
-            'jumbotron' => 'no'
+            'jumbotron' => 'no',
+            'form' => $form->CreateView(),
 
         ]);}
 

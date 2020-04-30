@@ -63,6 +63,16 @@ class Usuario
      */
     private $comentarioUsuRL;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cod_postal;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $apellido;
+
     public function __construct()
     {
         $this->pedidosRL = new ArrayCollection();
@@ -78,7 +88,12 @@ class Usuario
     {
         return $this->nombre;
     }
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
@@ -216,6 +231,30 @@ class Usuario
                 $comentarioUsuRL->setIdUsuario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCodPostal(): ?int
+    {
+        return $this->cod_postal;
+    }
+
+    public function setCodPostal(int $cod_postal): self
+    {
+        $this->cod_postal = $cod_postal;
+
+        return $this;
+    }
+
+    public function getApellido(): ?string
+    {
+        return $this->apellido;
+    }
+
+    public function setApellido(string $apellido): self
+    {
+        $this->apellido = $apellido;
 
         return $this;
     }

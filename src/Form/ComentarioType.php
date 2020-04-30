@@ -25,8 +25,8 @@ class ComentarioType extends AbstractType
             ->add('comentario',TextareaType::class,)
             ->add('fecha',HiddenType::class,)
              ->add('send', SubmitType::class,['label' => 'Enviar Comentario'])
-             ->add('id_usuario',TextType::class,)
-            ->add('id_producto',TextType::class,);
+             ->add('IdUsuario',HiddenType::class,)
+            ->add('IdProducto',HiddenType::class,);
 
 
         //     ->add('id_usuario' ,ChoiceType::class,[

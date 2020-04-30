@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\{MensajeRepository, PedidosRepository};
+use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository};
+use Symfony\Component\HttpFoundation\Request;
 class PageAdminController extends AbstractController
 {
     /**
@@ -69,10 +70,28 @@ class PageAdminController extends AbstractController
     /**
      * @Route("/page/admin/usuarios", name="usuarios")
      */
-    public function usuarios()
+    public function usuarios(UsuarioRepository $usuarioRepository)
     {
         return $this->render('adminPage/usuariosAdmin.html.twig', [
             'controller_name' => 'PageAdminController',
+            'usuarios' => $usuarioRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/page/admin/detalleUsuarios/{id}", name="detalleUsuarios", methods={"GET","POST"})
+     */
+    public function detalleUsuarios(Request $request, $id)
+    {
+        $equiposFiltro=$this->getDoctrine()
+        ->getRepository(Usuario::Class)
+        ->findBy(
+            ['id' => $id], 
+            ['id' => 'ASC']
+          );
+        return $this->render('adminPage/detalleUsuario.html.twig', [
+            'controller_name' => 'PageAdminController',
+            'usuario' => $equiposFiltro,
+
         ]);
     }
 }
