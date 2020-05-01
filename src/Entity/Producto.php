@@ -53,9 +53,11 @@ class Producto
      */
     private $comentariosRL;
 
+
     public function __construct()
     {
         $this->comentariosRL = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -165,4 +167,6 @@ class Producto
 
         return $this;
     }
+
+
 }

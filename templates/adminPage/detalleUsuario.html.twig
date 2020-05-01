@@ -23,7 +23,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="text-center"> 
-                                            <img src="../img/user.jpg" class="rounded-circle" width="150" />
+                                            <img src="/img/user.png" class="rounded-circle" width="150" />
                                             {% for usuarios in usuario %}
                                             <h4 class="card-title mt-10">{{usuarios.nombre}}</h4>
                                             <p class="card-subtitle">Front End Developer</p>
@@ -41,9 +41,8 @@
                                         <h6>{{usuarios.telefono}}</h6> 
                                         <small class="text-muted d-block pt-10">Dirección</small>
                                         <h6>{{usuarios.direccion}}</h6>
-                                        <div class="map-box">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.886539092!2d77.49085452149588!3d12.953959988118836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C+Karnataka!5e0!3m2!1sen!2sin!4v1542005497600" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                        </div> 
+                                        <h6>{{usuarios.provincia}}</h6>
+                                        <h6>{{usuarios.codpostal}}</h6>
                                         <small class="text-muted d-block pt-30">Social Profile</small>
                                         <br/>
                                         <button class="btn btn-icon btn-facebook"><i class="fab fa-facebook-f"></i></button>
@@ -72,10 +71,10 @@
                                                             <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
                                                                 <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
                                                                 <div class="row">
-                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img2.jpg" class="img-fluid rounded" /></div>
-                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img3.jpg" class="img-fluid rounded" /></div>
-                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img4.jpg" class="img-fluid rounded" /></div>
-                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img5.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
                                                                 </div>
                                                                 <div class="like-comm"> 
                                                                     <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
@@ -86,16 +85,17 @@
                                                     </div>
                                                     <hr>
                                                     <div class="sl-item">
-                                                        <div class="sl-left"> <img src="../img/users/2.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>
                                                         <div class="sl-right">
-                                                            <div> <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                                <div class="mt-20 row">
-                                                                    <div class="col-md-3 col-xs-12"><img src="../img/big/img6.jpg" alt="user" class="img-fluid rounded" /></div>
-                                                                    <div class="col-md-9 col-xs-12">
-                                                                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. </p> <a href="javascript:void(0)" class="btn btn-success"> Design weblayout</a>
-                                                                    </div>
+                                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg"class="img-fluid rounded" /></div>
                                                                 </div>
-                                                                <div class="like-comm mt-20"> 
+                                                                <div class="like-comm"> 
                                                                     <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
                                                                     <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
                                                                 </div>
@@ -104,26 +104,40 @@
                                                     </div>
                                                     <hr>
                                                     <div class="sl-item">
-                                                        <div class="sl-left"> <img src="../img/users/3.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>
                                                         <div class="sl-right">
-                                                            <div>
-                                                                <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                                <p class="mt-10"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper </p>
-                                                            </div>
-                                                            <div class="like-comm mt-20"> 
-                                                                <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
-                                                                <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                </div>
+                                                                <div class="like-comm"> 
+                                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
+                                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <hr>
                                                     <div class="sl-item">
-                                                        <div class="sl-left"> <img src="../img/users/4.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>
                                                         <div class="sl-right">
                                                             <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                                <blockquote class="mt-10">
-                                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                                </blockquote>
+                                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="/img/conejos.jpg" class="img-fluid rounded" /></div>
+
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><p>Ver más</p></div>                                                                    
+                                                                </div>
+                                                                <div class="like-comm"> 
+                                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
+                                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -134,24 +148,24 @@
                                             <div class="card-body">
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label for="example-name">Full Name</label>
+                                                        <label for="example-name">Nombre</label>
                                                         <input type="text" placeholder="{{usuarios.nombre}}" class="form-control" name="example-name" id="example-name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="example-name">Apellidos</label>
+                                                        <input type="text" placeholder="{{usuarios.apellido}}" class="form-control" name="example-name" id="example-name">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="example-email">Email</label>
                                                         <input type="email" placeholder="{{usuarios.email}}" class="form-control" name="example-email" id="example-email">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="example-password">Password</label>
-                                                        <input type="password" value="password" class="form-control" name="example-password" id="example-password">
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label for="example-phone">Phone No</label>
                                                         <input type="text" placeholder="{{usuarios.telefono}}" id="example-phone" name="example-phone" class="form-control">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="example-message">Message</label>
-                                                        <textarea name="example-message" name="example-message" rows="5" class="form-control"></textarea>
+                                                        <label for="example-phone">Código Postal</label>
+                                                        <input type="text" placeholder="{{usuarios.codpostal}}" id="example-phone" name="example-phone" class="form-control">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="example-country">Select Country</label>
@@ -162,6 +176,10 @@
                                                             <option>Canada</option>
                                                             <option>Thailand</option>
                                                         </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="example-password">Password</label>
+                                                        <input type="password" value="password" class="form-control" name="example-password" id="example-password">
                                                     </div>
                                                     <button class="btn btn-success" type="submit">Update Profile</button>
                                                 </form>

@@ -40,7 +40,7 @@
                                                 <tbody>
                                                     <tr>
                                     {% for pedido in pedidos %}
-                                                    <td>{{ pedido.id }}</td>
+                                                    <td><a href="{{ path('detallepedido', {'id': pedido.id, 'name':'iduser'}) }}">{{ pedido.id }}</a></td>
                                                     <td>{{ pedido.nombreCliente }}</td>
                                                     <td>{{ pedido.telefono }}</td>
                                                     <td>{{ pedido.direccion }}</td>
