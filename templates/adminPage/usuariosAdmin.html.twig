@@ -33,20 +33,20 @@
                                                 </thead>
                                                 <tbody>
                                       
-                                                     <tr>
-                                                        <td>
-                                                            <div class="d-inline-block align-middle">
-                                                                <img src="https://images-na.ssl-images-amazon.com/images/I/61msAqfm6pL._AC_SY355_.jpg" alt="user image" class="rounded-circle img-40 align-top mr-15">
-                                                                <div class="d-inline-block">
-                                                                    <h6 class="centrar">Shirley Hoe</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>ejemplo@correo.com</td>
-                                                        <td>20/10/19</td>
-                                                    
-                                                        <td><a href="#!"><i class="ik ik-edit f-16 mr-15 text-green"></i></a><a href="#!"><i class="ik ik-trash-2 f-16 text-red"></i></a></td>
-                                                    </tr>
+                                                    {% for usuario in usuarios %}
+                                                            <tr>
+                                                                <td><a href="{{ path('detalleUsuarios', {'id': usuario.id, 'name':'iduser'}) }}">{{ usuario.nombre }}</a></td>
+                                                                <td>{{ usuario.email }}</td>
+                                                                <td>{{ usuario.fechaRegistro ? usuario.fechaRegistro|date('Y-m-d H:i:s') : '' }}</td>
+                                                                <td><a href="#!"><i class="ik ik-edit f-16 mr-15 text-green"></i></a><a href="#!"><i class="ik ik-trash-2 f-16 text-red"></i></a></td>
+                                                            </tr>
+                                                        {% else %}
+                                                            <tr>
+                                                                <td colspan="9">no records found</td>
+                                                            </tr>
+        {% endfor %}
+
+    
                                                     
                                                     
                                                 </tbody>

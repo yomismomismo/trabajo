@@ -10,7 +10,7 @@ html, body {
   overflow-x: hidden;
 }
 
-abbr[title="required"] {
+abbr[title="Este campo es obligatorio"] {
   text-decoration: none;
 }
 
@@ -335,7 +335,7 @@ p:last-child {
   padding: 0.5rem 0 0;
 }
 
-abbr[title="required"] {
+abbr[title="Este campo es obligatorio"] {
   color: #d4403a;
 }
 
