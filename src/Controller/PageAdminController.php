@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository};
+use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository, ProductoRepository};
 use Symfony\Component\HttpFoundation\Request;
 class PageAdminController extends AbstractController
 {
@@ -21,10 +21,11 @@ class PageAdminController extends AbstractController
     /**
      * @Route("/page/admin/productosAdmin", name="productosAdmin")
      */
-    public function productosAdmin()
+    public function productosAdmin(ProductoRepository $productoRepository)
     {
         return $this->render('adminPage/prodcAdmin.html.twig', [
             'controller_name' => 'PageController',
+            'productos' => $productoRepository->findAll(),
         ]);
     }
 
