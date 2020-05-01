@@ -21,10 +21,11 @@ class PageAdminController extends AbstractController
     /**
      * @Route("/page/admin/productosAdmin", name="productosAdmin")
      */
-    public function productosAdmin()
+    public function productosAdmin(ProductoRepository $productoRepository)
     {
         return $this->render('adminPage/prodcAdmin.html.twig', [
             'controller_name' => 'PageController',
+            'productos' => $productoRepository->findAll(),
         ]);
     }
 
