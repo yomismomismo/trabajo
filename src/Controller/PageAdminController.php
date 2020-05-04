@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository, ProductoRepository};
 use Symfony\Component\HttpFoundation\Request;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class PageAdminController extends AbstractController
 {
     /**
@@ -13,6 +15,8 @@ class PageAdminController extends AbstractController
      */
     public function index()
     {
+        $week = 10;
+
         return $this->render('adminPage/indexAdmin.html.twig', [
             'controller_name' => 'PageAdminController',
              ]);
@@ -121,14 +125,69 @@ class PageAdminController extends AbstractController
                     ['id' => 'ASC']
                   );
             }
-            foreach ($productosFiltro as $productos) {
-                # code...
-            }
         return $this->render('adminPage/invoice.html.twig', [
             'controller_name' => 'PageAdminController',
             'productos' => $productosFiltro,
+            'idpedido'=> $id,
             'cliente' => $idcliente
 
         ]);
+    }
+    /**
+     * @Route("/page/admin/pdf/{id}", name="pdf", methods={"GET","POST"})
+     */
+    public function pdf(Request $request,$id)
+    {
+        $pedidoFiltro=$this->getDoctrine()
+        ->getRepository(Pedidos::Class)
+        ->findBy(
+            ['id' => $id], 
+            ['id' => 'ASC']
+          );
+          $productosFiltro=$this->getDoctrine()
+          ->getRepository(Productoxpedido::Class)
+          ->findBy(
+              ['id_pedido' => $id], 
+              ['id' => 'ASC']
+            );
+            foreach ($pedidoFiltro as $cliente) {
+                $idcliente= $this->getDoctrine()
+                ->getRepository(Usuario::Class)
+                ->findBy(
+                    ['id' => $cliente->getIdCliente()], 
+                    ['id' => 'ASC']
+                  );
+            }
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('adminPage/factura.html.twig', [
+            'title' => "Welcome to our PDF Test",
+            'pedido' => $pedidoFiltro,
+            'idpedido'=> $id,
+            'productos' => $productosFiltro,
+            'cliente' => $idcliente
+        ]);
+        $html = preg_replace("/>s+</", "><", $html);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+
     }
 }

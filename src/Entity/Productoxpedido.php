@@ -28,6 +28,11 @@ class Productoxpedido
      */
     private $id_pedido;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cantidad;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class Productoxpedido
     public function setIdPedido(Pedidos $id_pedido): self
     {
         $this->id_pedido = $id_pedido;
+
+        return $this;
+    }
+
+    public function getCantidad(): ?int
+    {
+        return $this->cantidad;
+    }
+
+    public function setCantidad(int $cantidad): self
+    {
+        $this->cantidad = $cantidad;
 
         return $this;
     }

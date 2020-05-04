@@ -53,6 +53,11 @@ class Producto
      */
     private $comentariosRL;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $precio;
+
 
     public function __construct()
     {
@@ -164,6 +169,18 @@ class Producto
                 $comentariosRL->setIdProducto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrecio(): ?int
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio(int $precio): self
+    {
+        $this->precio = $precio;
 
         return $this;
     }

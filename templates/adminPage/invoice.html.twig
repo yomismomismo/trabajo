@@ -68,17 +68,20 @@
                                                     <th>Product</th>
                                                     <th>Serial #</th>
                                                     <th>Description</th>
-                                                    <th>Subtotal</th>
+                                                    <th>Precio</th>
+                                                    <th>Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                              {% for producto in productos %}
+                                             	{% set totalprecio = producto.IdProducto.precio * producto.cantidad %}
                                                 <tr>
-                                                    <td>1</td>
+                                                    <td>{{producto.cantidad}}</td>
                                                     <td>{{producto.IdProducto.nombre}}</td>
                                                     <td>{{producto.IdProducto.id}}</td>
                                                     <td>{{producto.IdProducto.descripcion}}</td>
-                                                    <td>$64.50</td>
+                                                    <td>{{producto.IdProducto.precio}}€</td>
+                                                    <td>{{totalprecio}}€</td>
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -98,25 +101,33 @@
                                           Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
                                         </div>
                                     </div>
+                                    {% set subtotal = '0' %}
+                            {% for producto in productos %}
+							{% set totalprecio = producto.IdProducto.precio * producto.cantidad %} 
+					        {% set subtotal = subtotal + totalprecio %}
+								 {% endfor %}
                                     <div class="col-6">
                                         <p class="lead">Amount Due 10/11/2018</p>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tr>
                                                     <th style="width:50%">Subtotal:</th>
-                                                    <td>$250.30</td>
+                                                    <td style="color:red margin-left:100px">{{subtotal}}€</td>
                                                 </tr>
+                            {% set tasa = subtotal * 21 / 100 %}
                                                 <tr>
-                                                    <th>Tax (9.3%)</th>
-                                                    <td>$10.34</td>
+                                                    <th>Tasas (21%)</th>
+                                                    <td>{{tasa}}€</td>
                                                 </tr>
+                            {% set envio = 20 %}
                                                 <tr>
-                                                    <th>Shipping:</th>
-                                                    <td>$5.80</td>
+                                                    <th>Envio:</th>
+                                                    <td>{{envio}}€</td>
                                                 </tr>
+                            {% set totalpedido = subtotal + tasa + envio %}
                                                 <tr>
                                                     <th>Total:</th>
-                                                    <td>$265.24</td>
+                                                    <td>{{totalpedido}}€</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -124,8 +135,9 @@
                                 </div>
                                 <div class="row no-print">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-                                        <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                                       <a href="{{ path('pdf', {'id': idpedido, 'name':'iduser'}) }}"> <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+
+                                        <a href="{{ path('pdf', {'id': idpedido, 'name':'iduser'}) }}"> <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generar PDF</button></a>
                                     </div>
                                 </div>
                             </div>
