@@ -28,6 +28,7 @@
                                                     <th>Imagen</th>
                                                     <th>Nombre</th>
                                                     <th>Descripción</th>
+                                                    <th>Precio</th>
                                                     <th>Unidades Vendidas</th>
                                                     <th>Unidades Stock</th>
                                                     <th>Acciones</th>
@@ -43,9 +44,16 @@
                                                                 </td>
                                                                 <td>{{ producto.nombre }}</td>
                                                                 <td>{{ producto.descripcion }}</td>
+                                                                <td>{{ producto.precio }}€</td>
                                                                 <td>{{ producto.UnidadesVendidas }}</td>
                                                                 <td>{{ producto.UnidadesStock }}</td>
-                                                                <td><a href="#!"><i class="ik ik-edit f-16 mr-15 text-green"></i></a><a href="#!"><i class="ik ik-trash-2 f-16 text-red"></i></a></td>
+                                                                <td>
+                                                                     <a href="{{ path('detalleProducto', {'id': producto.id}) }}"><i class="ik ik-edit f-16 mr-15 text-green"></i></a>
+                                                                    <a href="{{ path('producto_edit', {'id': producto.id}) }}"><i class="ik ik-edit f-16 mr-15 text-green"></i></a>
+                                                                    {{ include('producto/_delete_form.html.twig') }}
+                                                                </td>
+                                                                {# <td>{{ include('producto/_delete_form.html.twig') }}</td>
+                                                                <td><a href="#!"><i class="ik ik-edit f-16 mr-15 text-green"></i></a><a href="#!"><i class="ik ik-trash-2 f-16 text-red"></i></a></td> #}
                                                                 {# <td>{{ producto.unidades_vendidas }}</td> #}
                                                                 {# <td>{{ producto.getIdUsuario().email }}</td>
                                                                 <td>{{ producto.getIdProducto().nombre }}</td>
