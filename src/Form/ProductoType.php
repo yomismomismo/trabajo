@@ -6,7 +6,7 @@ use App\Entity\Producto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\{ChoiceType,TextareaType,SubmitType,HiddenType, TextType};
 class ProductoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -16,8 +16,16 @@ class ProductoType extends AbstractType
             ->add('nombre')
             ->add('descripcion')
             ->add('unidades_stock')
-            ->add('categoria')
-            ->add('unidades_vendidas')
+            ->add('precio')
+            ->add('categoria',ChoiceType::class, [
+                'choices' => [
+                    '- selecciona -' => '',
+                    'Comida' => 'Comida',
+                    'Juguetes' => 'Juguetes',
+                    'Henos' => 'Henos',
+                    'Accesorios' => 'Accesorios',]])
+
+            ->add('send', SubmitType::class,['label' => 'Actualizar'])
         ;
     }
 

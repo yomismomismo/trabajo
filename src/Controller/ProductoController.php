@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Producto;
+use App\Entity\{Producto, Comentario};
+
 use App\Form\ProductoType;
 use App\Repository\ProductoRepository;
+use App\Repository\ComentarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\ComentarioType;
 
 /**
  * @Route("/producto")
@@ -22,6 +25,7 @@ class ProductoController extends AbstractController
     {
         return $this->render('producto/index.html.twig', [
             'productos' => $productoRepository->findAll(),
+    
         ]);
     }
 
@@ -83,12 +87,27 @@ class ProductoController extends AbstractController
      */
     public function delete(Request $request, Producto $producto): Response
     {
+        $comentarioFiltro=$this->getDoctrine()
+        ->getRepository(Comentario::Class);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Comentario::class)
+        ->findBy(
+            ['id_producto' => $producto], 
+            ['id' => 'ASC']
+          );
+          foreach ($product as $prod) {
+            $entityManager->remove($prod);
+            $entityManager->flush();
+          }
+   
+
         if ($this->isCsrfTokenValid('delete'.$producto->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($producto);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('producto_index');
+        return $this->redirectToRoute('productosAdmin');
     }
 }

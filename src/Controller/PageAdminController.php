@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\{Usuario, Pedidos, Producto, Productoxpedido};
+use App\Entity\{Usuario, Pedidos, Producto, Productoxpedido, Comentario};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ProductoType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository, ProductoRepository};
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +28,31 @@ class PageAdminController extends AbstractController
     /**
      * @Route("/page/admin/productosAdmin", name="productosAdmin")
      */
-    public function productosAdmin(ProductoRepository $productoRepository)
+    public function productosAdmin(ProductoRepository $productoRepository, ComentarioRepository $comentarioRepository )
     {
+
+
         return $this->render('adminPage/prodcAdmin.html.twig', [
             'controller_name' => 'PageController',
             'productos' => $productoRepository->findAll(),
+            'comentario' => $comentarioRepository->findAll(),
+            
         ]);
     }
+    /**
+     * @Route("/page/admin/deletecoment/{id}", name="deletecom")
+     */
+    public function deletecom(ProductoRepository $productoRepository, ComentarioRepository $comentarioRepository )
+    {
 
+
+        return $this->render('adminPage/prodcAdmin.html.twig', [
+            'controller_name' => 'PageController',
+            'productos' => $productoRepository->findAll(),
+            'comentario' => $comentarioRepository->findAll(),
+            
+        ]);
+    }
      /**
      * @Route("/page/admin/comentAdmin", name="comentAdmin")
      */
@@ -42,7 +61,7 @@ class PageAdminController extends AbstractController
         return $this->render('adminPage/comentAdmin.html.twig', [
             'controller_name' => 'PageController',
             'comentarios' => $comentarioRepository->findAll(),
-        ]);
+            ]);
     }
 
 
@@ -101,6 +120,8 @@ class PageAdminController extends AbstractController
 
         ]);
     }
+
+    
     /**
      * @Route("/page/admin/detallepedido/{id}", name="detallepedido", methods={"GET","POST"})
      */
@@ -131,6 +152,36 @@ class PageAdminController extends AbstractController
             'productos' => $productosFiltro,
             'idpedido'=> $id,
             'cliente' => $idcliente
+
+        ]);
+    }
+    
+    /**
+     * @Route("/page/admin/detalleProducto/{id}", name="detalleProducto", methods={"GET","POST"})
+     */
+    public function detalleProducto(Request $request, $id, Producto $producto): Response
+    {
+        $equiposFiltro=$this->getDoctrine()
+        ->getRepository(Producto::Class)
+        ->findBy(
+            ['id' => $id], 
+            ['id' => 'ASC']
+          );
+
+          $form = $this->createForm(ProductoType::class, $producto);
+          $form->handleRequest($request);
+  
+      if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('detalleProducto', array('id' => $id));
+        }
+          
+        return $this->render('adminPage/detalleProducto.html.twig', [
+            'producto' => $producto,
+            'form' => $form->createView(),
+            'controller_name' => 'PageAdminController',
+            'producto' => $equiposFiltro,
 
         ]);
     }

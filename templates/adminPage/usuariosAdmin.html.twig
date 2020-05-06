@@ -35,7 +35,7 @@
                                       
                                                     {% for usuario in usuarios %}
                                                             <tr>
-                                                                <td><a href="{{ path('detalleUsuarios', {'id': usuario.id, 'name':'iduser'}) }}">{{ usuario.nombre }}</a></td>
+                                                                <td><a href="{{ path('detalleUsuarios', {'id': usuario.id}) }}">{{ usuario.nombre }}</a></td>
                                                                 <td>{{ usuario.email }}</td>
                                                                 <td>{{ usuario.fechaRegistro ? usuario.fechaRegistro|date('Y-m-d H:i:s') : '' }}</td>
                                                                 <td><a href="#!"><i class="ik ik-edit f-16 mr-15 text-green"></i></a><a href="#!"><i class="ik ik-trash-2 f-16 text-red"></i></a></td>
