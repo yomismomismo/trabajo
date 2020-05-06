@@ -19,6 +19,7 @@ class PageAdminController extends AbstractController
 
         return $this->render('adminPage/indexAdmin.html.twig', [
             'controller_name' => 'PageAdminController',
+            
              ]);
     }
 
@@ -158,6 +159,7 @@ class PageAdminController extends AbstractController
                     ['id' => 'ASC']
                   );
             }
+
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -173,15 +175,21 @@ class PageAdminController extends AbstractController
             'productos' => $productosFiltro,
             'cliente' => $idcliente
         ]);
+
         $html = preg_replace("/>s+</", "><", $html);
         
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
-        
+        $f;
+        if(headers_sent($f,$l)){
+            echo $f,'<br>';
+            die('se detecto linea');
+        }
         // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
         $dompdf->setPaper('A4', 'portrait');
 
         // Render the HTML as PDF
+
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)

@@ -13,10 +13,21 @@
 			<li><a href="/productos">Productos</a></li>
 			<li><a href="/servicios">Servicios</a></li>
 			<li><a href="/contacto">Contacto</a></li>
-			<li><a href="#0" onclick="javascript:mostrar()" id="user" ><i class="far fa-user"></i></a></li>
+
 			<script src="https://kit.fontawesome.com/7bd9185960.js" crossorigin="anonymous"></script>
 			<li><a href="#0">Idioma</a></li>
+						                               {% if user == "" %}
+			<li><a href="#0" onclick="javascript:mostrar()" id="user" ><i class="far fa-user"></i></a></li>
+			        {% endif %}
+					
+					{% if user != "" %}
+<li><a>{{user}}</a></li> 
+<li><a href="{{ path('logOut')}}"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i></a></li>
+
+
+					{% endif %}
 		</ul>
+
 	</nav>
 	
 </header>
@@ -78,11 +89,14 @@
 
 	<div id="cd-cart">
 		<h2>Cart</h2>
-		<ul class="cd-cart-items">
-      <li>
+		<ul class="cd-cart-items" id="cd-cart-items">
+<li><div class="producto"><span class="cd-qty">X2</span><span class="cd-name"> Variable Product<br></span><span>P.V.P: 39.00 €</span><span class="product-price"> Total: 78€</span><div class="product-removal-drop"><a href="javascript:removeItemDrop()"><button id="button-cart-drop" class="cd-item-remove cd-img-replace"></button></a></div></div></li>
+{# <a href="javascript:oculto()">X</a> #}
+      {# <li>
+	  
         <div class="producto">
-        <span class="cd-qty">2x</span> Product Name
-        <div class="product-price">12.99</div>
+        <span class="cd-qty">2x</span><span class="cd-name" id="cd-name">Product Name</span> 
+        <div class="product-price" id="product-price">12.99</div>
 	<div class="product-removal-drop">
 <button id="button-cart-drop" href="#0" class="cd-item-remove cd-img-replace"></button>
     </div>
@@ -99,6 +113,8 @@
     <div class="product-line-price">12.99</div>
     </div>
 			</li>
+			<li><div class="producto"><span class="cd-qty">X2</span><span class="cd-name"> Variable Product<br></span><span>P.V.P: 39.00 €</span><span class="product-price"> Total: 78€</span><div class="product-removal-drop"><button id="button-cart-drop" class="cd-item-remove cd-img-replace"></button></div></div></li> #}
+		
 		</ul> <!-- cd-cart-items -->
 
     <div class="cd-cart-total">
@@ -111,8 +127,32 @@
 		
 		<p class="cd-go-to-cart"><a href="#0">Go to cart page</a></p>
 	</div> <!-- cd-cart -->
+	<script src="{{ asset("addprod-cart.js", "script") }}" ></script>
 	            <script src="{{ asset("cart-drop.js", "script") }}"></script>
             <script src="{{ asset("newjs.js", "script") }}"></script>
+			
+			                                   {% if user == ""%}
+     <div id="lg-shadow-layer" class="lg-shadow-layer"></div>
+<article id="log" class="wrapper">
+  <form class="login" action="" method="POST">
+  <div class="row">
+    <div class="title col-7 col-sm-6 col-md-6 col-lg-6 col-xl-6">Iniciar Sesión </div>
+	<div class="title col-5 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="justify-content: flex-end; display: flex;"><a href="javascript:oculto()">X</a></div>
+	</div>
+    <input type="email" placeholder="Email" name="user" id="user" />
+    <i class="fa fa-user"></i>
+    <input type="password" placeholder="Contraseña" name="password" id="password" />
+    <i class="fa fa-key"></i>
+    <a href="/login">¿Aún no estás registrado?</a>
+    <button>
+      <i class="spinner"></i>
+      <span class="state">Acceder</span>
+    </button>
+  </form>
+</article>
+                                     {% endif %}
+                                  
+		<script src="/js/login.js"></script>
 <footer>
 	<div class="container">
 		<br>

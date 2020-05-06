@@ -76,7 +76,7 @@
 	        	<div class="col-md-6">
 	        		<div class="product-dtl">
         				<div class="product-info">
-		        			<div class="product-name">Variable Product</div>
+		        			<div class="product-name" id="nameprod">Variable Product</div>
 		        			<div class="reviews-counter">
 								<div class="rate">
 								    <input type="radio" id="star5" name="rate" value="5" />
@@ -92,7 +92,8 @@
 								  </div>
 								<span>3 Reviews</span>
 							</div>
-		        			<div class="product-price-discount"><span>$39.00</span><span class="line-through">$29.00</span></div>
+		        			<div class="product-price"><span id="product-price-detalle">39.00 €</span></div>
+							{# <span class="line-through">$29.00</span> #}
 		        		</div>
 	        			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	        			<div class="row">
@@ -118,10 +119,10 @@
 	        				<label for="size">Quantity</label>
 	        				<form action="#" class="display-flex">
 							    <div class="qtyminus">-</div>
-							    <input type="text" name="quantity" value="1" class="qty">
+							    <input type="text" name="quantity" value="1" class="qty" id="cantidad">
 							    <div class="qtyplus">+</div>
 							</form>
-							<a href="#" class="round-black-btn">Add to Cart</a>
+							<a href="#" class="round-black-btn" id="addcart">Add to Cart</a>
 	        			</div>
 	        		</div>
 	        	</div>

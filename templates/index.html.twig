@@ -1,6 +1,6 @@
 {% extends "page/layout.html.twig" %}
 {% block head %} 
-
+        <link rel="stylesheet" href="/css/login.css">
         <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.theme.default.min.css">
         <script src="/plugins/owl.carousel/dist/owl.carousel.min.js"></script>
@@ -146,6 +146,27 @@
 				harum aut sed eius nisi error officia quaerat. Dolores molestiae placeat voluptates vero. Nulla
 				eligendi saepe mollitia.</div>
 	</div>
-
+                                   {% if user == ""%}
+     <div id="lg-shadow-layer" class="lg-shadow-layer"></div>
+<article id="log" class="wrapper">
+  <form class="login" action="" method="POST">
+  <div class="row">
+    <div class="title col-7 col-sm-6 col-md-6 col-lg-6 col-xl-6">Iniciar Sesión </div>
+	<div class="title col-5 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="justify-content: flex-end; display: flex;"><a href="javascript:oculto()">X</a></div>
+	</div>
+    <input type="email" placeholder="Email" name="user" id="user" />
+    <i class="fa fa-user"></i>
+    <input type="password" placeholder="Contraseña" name="password" id="password" />
+    <i class="fa fa-key"></i>
+    <a href="/login">¿Aún no estás registrado?</a>
+    <button>
+      <i class="spinner"></i>
+      <span class="state">Acceder</span>
+    </button>
+  </form>
+</article>
+                                     {% endif %}
+                                  
+		<script src="/js/login.js"></script>
 </section>
 {% endblock %}
