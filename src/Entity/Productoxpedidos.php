@@ -23,7 +23,7 @@ class Productoxpedidos
     private $id_producto;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Producto", inversedBy="productoxpedidos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pedidos", inversedBy="productoxpedidos")
      */
     private $id_pedido;
 
@@ -54,7 +54,7 @@ class Productoxpedidos
         return $this->id_pedido;
     }
 
-    public function setIdPedido(?Producto $id_pedido): self
+    public function setIdPedido(?Pedidos $id_pedido): self
     {
         $this->id_pedido = $id_pedido;
 

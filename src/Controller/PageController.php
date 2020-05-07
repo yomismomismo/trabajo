@@ -151,14 +151,18 @@ class PageController extends AbstractController
                            ['nombre' => $user1], 
                            ['id' => 'ASC']
                          );
+          
+              $iduser=$this->getDoctrine()
+                ->getRepository(Usuario::class)
+                 ->findOneBy(['nombre' => $user1]);
+                           
+                      
           //Filtro del producto
-          $idpedido= 0;
-          foreach ($usuarioIniciado as $usuariopedido) {
+
             $pedidos=$this->getDoctrine()
             ->getRepository(Pedidos::class)
-            ->findOneBy(['id_cliente' => $usuariopedido]);
+            ->findOneBy(['id_cliente' => $iduser->getId()]);
              
-          }
               $idpedido=$pedidos->getId();
           $filtroProducto=$this->getDoctrine()
           ->getRepository(Producto::Class)
