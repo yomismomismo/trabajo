@@ -49,6 +49,11 @@ class Pedidos
      */
     private $fecha_pedido;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $estado;
+
 
     public function getId(): ?int
     {
@@ -125,6 +130,23 @@ class Pedidos
         $this->fecha_pedido = $fecha_pedido;
 
         return $this;
+    }
+
+    public function getEstado(): ?string
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(string $estado): self
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+         public function __toString()
+    {
+         return $this->getIdCliente();
+    
     }
 
 }

@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\{Mensaje,Comentario, Usuario, Producto};
+use App\Entity\{Mensaje,Comentario, Usuario, Producto, Productoxpedidos, Pedidos};
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\{MensajeType, ComentarioType, UsuarioType};
+use App\Form\{MensajeType, ComentarioType, UsuarioType, ProductoxpedidoType};
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PageController extends AbstractController
@@ -138,30 +138,88 @@ class PageController extends AbstractController
         }
         }
     /**
-     * @Route("/detalleprodc", name="detalleprod")
+     * @Route("/detalleprodc/{id}", name="detalleprod")
      */
-    public function detalleprod(Request $request, SessionInterface $session)
+    public function detalleprod(Request $request, $id, SessionInterface $session)
     {
+      $user1 = $session->get('nombre_usuario');
+        //Formulario Pedido   
+        $usuarioIniciado=$this->getDoctrine()
+                       ->getRepository(Usuario::Class)
+                       ->findBy(
+                           ['nombre' => $user1], 
+                           ['id' => 'ASC']
+                         );
+          //Filtro del producto
+          foreach ($usuarioIniciado as $usuariopedido) {
+            $pedidos=$this->getDoctrine()
+            ->getRepository(Pedidos::class)
+            ->findOneBy(['id_cliente' => $usuariopedido]);
+          }
+          $idpedido=$pedidos->getId();
+          $filtroProducto=$this->getDoctrine()
+          ->getRepository(Producto::Class)
+          ->findBy(
+              ['id' => $id], 
+              ['id' => 'ASC']
+            );
+            $filtroPedido=$this->getDoctrine()
+            ->getRepository(Producto::Class)
+            ->findBy(
+                ['id' => $idpedido], 
+                ['id' => 'ASC']
+              );
+            // foreach ($usuarioIniciado as $usuariopedido) {
+            // $filtroPedido=$this->getDoctrine()
+            // ->getRepository(Producto::Class)
+            // ->findBy(
+            //     ['id' => $usuariopedid], 
+            //     ['id' => 'ASC']
+            //   );
+            // }
+          //Acaba filtro del producto
 
 
-        $contactoTo=new Comentario();
-        $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
+  
+      $product=new Producto();
+      $contactoTopedido=new Productoxpedidos();
+      $formpedido=$this->CreateForm(ProductoxpedidoType::Class, $contactoTopedido);
+      $formpedido->handleRequest($request);
 
+            
+  
+           foreach ($usuarioIniciado as $usuario) {
+          if ($usuario->getId() == $pedidos->getIdCliente()->getId() && $pedidos->getEstado() == "incompleto"){
+          $hola="hola";
+          if($formpedido->isSubmitted() && $formpedido->isValid()){
+            $entityManager1=$this->getDoctrine()->getManager();
+              
+            foreach ($filtroProducto as $productoid) {
+              $contactoTopedido->setIdPedido($productoid);
+            }
+            foreach ($filtroPedido as $pedidos1) {
+              $contactoTopedido->setIdProducto($pedidos1);
+            }
+                $entityManager1->persist($contactoTopedido);
+                $entityManager1->flush();  }  
+            }}
+
+          //Acaba formulario del pedido
+
+          //Filtro del usuario
         $filtroUsuario=$this->getDoctrine()
-
         ->getRepository(Usuario::Class)
         ->findBy(
             ['id' => "1"], 
             ['id' => 'ASC']
           );
+          //Acaba filtro del usuario
 
-          $filtroProducto=$this->getDoctrine()
 
-          ->getRepository(Producto::Class)
-          ->findBy(
-              ['id' => "1"], 
-              ['id' => 'ASC']
-            );
+
+         //Formulario Comentario   
+        $contactoTo=new Comentario();
+        $form=$this->CreateForm(ComentarioType::Class, $contactoTo);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
@@ -172,10 +230,11 @@ class PageController extends AbstractController
               foreach ($filtroProducto as $productoid) {
                 $contactoTo->setIdProducto($productoid);
               }
-            // $contactoTo->setIdProducto('1');
             $entityManager->persist($contactoTo);
             $entityManager->flush();}
-            
+            //Acaba formulario del comentario
+
+
             $user1 = $session->get('nombre_usuario');
             $user= $request->request->get("user");
             $password= $password= $request->request->get("password");
@@ -201,15 +260,22 @@ class PageController extends AbstractController
                            
                    ]);
                }
+
    }
+   
             else{
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'detalle',
             'form' => $form->CreateView(),
+            'form1' => $formpedido->CreateView(),
             'jumbotron' => 'no',
             "user" => "",
             "user" => $user1, 
+            "producto" => $filtroProducto,
+            "puntuacion1" => "4",
+            "hola" => $pedidos,
+            "usuario"=> $idpedido
         ]);
             }
     }

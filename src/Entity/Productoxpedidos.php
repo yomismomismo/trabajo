@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductoxpedidoRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProductoxpedidosRepository")
  */
-class Productoxpedido
+class Productoxpedidos
 {
     /**
      * @ORM\Id()
@@ -17,14 +17,13 @@ class Productoxpedido
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Producto", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Producto", inversedBy="productoxpedidos")
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_producto;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Pedidos", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Producto", inversedBy="productoxpedidos")
      */
     private $id_pedido;
 
@@ -43,19 +42,19 @@ class Productoxpedido
         return $this->id_producto;
     }
 
-    public function setIdProducto(Producto $id_producto): self
+    public function setIdProducto(?Producto $id_producto): self
     {
         $this->id_producto = $id_producto;
 
         return $this;
     }
 
-    public function getIdPedido(): ?Pedidos
+    public function getIdPedido(): ?Producto
     {
         return $this->id_pedido;
     }
 
-    public function setIdPedido(Pedidos $id_pedido): self
+    public function setIdPedido(?Producto $id_pedido): self
     {
         $this->id_pedido = $id_pedido;
 

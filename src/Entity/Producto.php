@@ -58,10 +58,16 @@ class Producto
      */
     private $precio;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Productoxpedidos", mappedBy="id_producto", orphanRemoval=true)
+     */
+    private $productoxpedidos;
+
 
     public function __construct()
     {
         $this->comentariosRL = new ArrayCollection();
+        $this->productoxpedidos = new ArrayCollection();
 
     }
 
@@ -181,6 +187,67 @@ class Producto
     public function setPrecio(int $precio): self
     {
         $this->precio = $precio;
+
+        return $this;
+    }
+        /**
+     * @return Collection|Productoxpedido[]
+     */
+    public function getProductoRL(): Collection
+    {
+        return $this->productosRL;
+    }
+
+    public function addProductoRLRL(Pedidos $pedidosRL): self
+    {
+        if (!$this->productosRL->contains($productosRL)) {
+            $this->productosRL[] = $productosRL;
+            $productosRL->setIdProducto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductoRL(Pedidos $productosRL): self
+    {
+        if ($this->productosRL->contains($productosRL)) {
+            $this->productosRL->removeElement($productosRL);
+            // set the owning side to null (unless already changed)
+            if ($productosRL->getIdProducto() === $this) {
+                $productosRL->setIdProducto(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Productoxpedidos[]
+     */
+    public function getProductoxpedidos(): Collection
+    {
+        return $this->productoxpedidos;
+    }
+
+    public function addProductoxpedido(Productoxpedidos $productoxpedido): self
+    {
+        if (!$this->productoxpedidos->contains($productoxpedido)) {
+            $this->productoxpedidos[] = $productoxpedido;
+            $productoxpedido->setIdProducto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductoxpedido(Productoxpedidos $productoxpedido): self
+    {
+        if ($this->productoxpedidos->contains($productoxpedido)) {
+            $this->productoxpedidos->removeElement($productoxpedido);
+            // set the owning side to null (unless already changed)
+            if ($productoxpedido->getIdProducto() === $this) {
+                $productoxpedido->setIdProducto(null);
+            }
+        }
 
         return $this;
     }
