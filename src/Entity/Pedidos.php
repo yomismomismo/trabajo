@@ -60,12 +60,12 @@ class Pedidos
         return $this->id;
     }
 
-    public function getIdCliente(): ?usuario
+    public function getIdCliente(): ?Usuario
     {
         return $this->id_cliente;
     }
 
-    public function setIdCliente(?usuario $id_cliente): self
+    public function setIdCliente(?Usuario $id_cliente): self
     {
         $this->id_cliente = $id_cliente;
 
@@ -142,11 +142,6 @@ class Pedidos
         $this->estado = $estado;
 
         return $this;
-    }
-         public function __toString()
-    {
-         return $this->getIdCliente();
-    
     }
 
 }

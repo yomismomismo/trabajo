@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200506211544 extends AbstractMigration
+final class Version20200507154011 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -33,7 +33,7 @@ final class Version20200506211544 extends AbstractMigration
         $this->addSql('ALTER TABLE comentario ADD CONSTRAINT FK_4B91E7027EB2C349 FOREIGN KEY (id_usuario_id) REFERENCES usuario (id)');
         $this->addSql('ALTER TABLE pedidos ADD CONSTRAINT FK_6716CCAA7BF9CE86 FOREIGN KEY (id_cliente_id) REFERENCES usuario (id)');
         $this->addSql('ALTER TABLE productoxpedidos ADD CONSTRAINT FK_56CECDD6E57A479 FOREIGN KEY (id_producto_id) REFERENCES producto (id)');
-        $this->addSql('ALTER TABLE productoxpedidos ADD CONSTRAINT FK_56CECDDC861D91D FOREIGN KEY (id_pedido_id) REFERENCES producto (id)');
+        $this->addSql('ALTER TABLE productoxpedidos ADD CONSTRAINT FK_56CECDDC861D91D FOREIGN KEY (id_pedido_id) REFERENCES pedidos (id)');
     }
 
     public function down(Schema $schema) : void
@@ -41,9 +41,9 @@ final class Version20200506211544 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE productoxpedidos DROP FOREIGN KEY FK_56CECDDC861D91D');
         $this->addSql('ALTER TABLE comentario DROP FOREIGN KEY FK_4B91E7026E57A479');
         $this->addSql('ALTER TABLE productoxpedidos DROP FOREIGN KEY FK_56CECDD6E57A479');
-        $this->addSql('ALTER TABLE productoxpedidos DROP FOREIGN KEY FK_56CECDDC861D91D');
         $this->addSql('ALTER TABLE comentario DROP FOREIGN KEY FK_4B91E7027EB2C349');
         $this->addSql('ALTER TABLE pedidos DROP FOREIGN KEY FK_6716CCAA7BF9CE86');
         $this->addSql('DROP TABLE comentario');

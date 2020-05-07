@@ -12,12 +12,13 @@ class PedidosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('id_cliente')
             ->add('nombre_cliente')
             ->add('telefono')
             ->add('direccion')
             ->add('provincia')
             ->add('fecha_pedido')
-            ->add('id_cliente')
+  
         ;
     }
 

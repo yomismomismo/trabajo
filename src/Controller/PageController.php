@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\{Mensaje,Comentario, Usuario, Producto, Productoxpedidos, Pedidos};
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\{MensajeType, ComentarioType, UsuarioType, ProductoxpedidoType};
+use App\Form\{MensajeType, ComentarioType, UsuarioType, ProductoxpedidoType, PedidosType};
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PageController extends AbstractController
@@ -144,7 +144,7 @@ class PageController extends AbstractController
     public function detalleprod(Request $request, $id, SessionInterface $session)
     {
       $user1 = $session->get('nombre_usuario');
-        //Formulario Pedido   
+        //Filtro Usuario  
         $usuarioIniciado=$this->getDoctrine()
                        ->getRepository(Usuario::Class)
                        ->findBy(
@@ -155,66 +155,105 @@ class PageController extends AbstractController
               $iduser=$this->getDoctrine()
                 ->getRepository(Usuario::class)
                  ->findOneBy(['nombre' => $user1]);
-                           
-                      
-          //Filtro del producto
 
+                 $idusuario= $iduser->getId();
+
+                 $idusario=$this->getDoctrine()
+                 ->getRepository(Usuario::class)
+                  ->findOneBy(['id' => $idusuario]);
+                  echo($idusario->getId());
+        //Acaba Filtro de usuario
+
+
+        //Filtro Pedido 
             $pedidos=$this->getDoctrine()
             ->getRepository(Pedidos::class)
             ->findOneBy(['id_cliente' => $iduser->getId()]);
+            echo($pedidos->getIdCliente()->getId());
+
+            $estado=$this->getDoctrine()
+            ->getRepository(Pedidos::class)
+             ->findOneBy(['estado' => "incompleto", 'id_cliente' => $idusario->getId()]);
+             if ($estado) {
+             $idestado=$this->getDoctrine()
+             ->getRepository(Pedidos::class)
+              ->findBy(['id' => $estado->getId()]);
+
+                $idpedidoEstado=$estado->getId();
              
-              $idpedido=$pedidos->getId();
+
+           
+              $filtroPedido=$this->getDoctrine()
+              ->getRepository(Pedidos::Class)
+              ->findBy(
+                  ['id' => $idpedidoEstado], 
+                  ['id' => 'ASC']
+                ); }
+        //Acaba Filtro de Pedido
+
+        
+        //Filtro producto 
           $filtroProducto=$this->getDoctrine()
           ->getRepository(Producto::Class)
           ->findBy(
               ['id' => $id], 
               ['id' => 'ASC']
             );
-            $filtroPedido=$this->getDoctrine()
-            ->getRepository(Pedidos::Class)
-            ->findBy(
-                ['id' => $idpedido], 
-                ['id' => 'ASC']
-              );
-            // foreach ($usuarioIniciado as $usuariopedido) {
-            // $filtroPedido=$this->getDoctrine()
-            // ->getRepository(Producto::Class)
-            // ->findBy(
-            //     ['id' => $usuariopedid], 
-            //     ['id' => 'ASC']
-            //   );
-            // }
-          //Acaba filtro del producto
+        //Acaba Filtro de producto
 
-
-  
-      $product=new Producto();
-      $contactoTopedido=new Productoxpedidos();
-      $formpedido=$this->CreateForm(ProductoxpedidoType::Class, $contactoTopedido);
-      $formpedido->handleRequest($request);
-
-            
-  
-           foreach ($usuarioIniciado as $usuario) {
-          if ($usuario->getId() == $pedidos->getIdCliente()->getId() && $pedidos->getEstado() == "incompleto"){
-          $hola="hola";
-          if($formpedido->isSubmitted() && $formpedido->isValid()){
-            $entityManager1=$this->getDoctrine()->getManager();
+       //Envio de datos a la tabla productoxpedidos si hay un pedido incompleto
+            $contactoTopedido=new Productoxpedidos();
+            $formpedido=$this->CreateForm(ProductoxpedidoType::Class, $contactoTopedido);
+            $formpedido->handleRequest($request);
+            if ($pedidos  && $estado) {
               
-            foreach ($filtroProducto as $productoid) {
-              $contactoTopedido->setIdProducto($productoid);
-            }
-            foreach ($filtroPedido as $pedidoid) {
-              $contactoTopedido->setIdPedido($pedidoid);
-            }
-            // foreach ($filtroPedido as $pedidos1) {
-            //   $contactoTopedido->setIdPedido($pedidos1->getId());
-            // }
-                $entityManager1->persist($contactoTopedido);
-                $entityManager1->flush();  }  
-            }}
+           
+                if ($idusario->getId() == $pedidos->getIdCliente()->getId() && $estado){
+                
 
-          //Acaba formulario del pedido
+                if($formpedido->isSubmitted() && $formpedido->isValid()){
+                  $entityManager1=$this->getDoctrine()->getManager();
+                    
+                  foreach ($filtroProducto as $productoid) {
+                    $contactoTopedido->setIdProducto($productoid);
+                  }
+                  foreach ($idestado as $pedidoid) {
+                    $contactoTopedido->setIdPedido($pedidoid);
+                  }
+                  // foreach ($filtroPedido as $pedidos1) {
+                  //   $contactoTopedido->setIdPedido($pedidos1->getId());
+                  // }
+ }  
+                  
+                  
+          } }
+                  else{
+                    
+                    $contactoTopedidos=new Pedidos();
+                    $formpedidos=$this->CreateForm(PedidosType::Class, $contactoTopedidos);
+                    $formpedidos->handleRequest($request);
+                    if($formpedido->isSubmitted() && $formpedido->isValid()){
+                      $entityManager1=$this->getDoctrine()->getManager();
+                    $contactoTopedidos->setIdCliente($idusario);
+                    $contactoTopedidos->setNombreCliente($iduser->getNombre());
+                    $contactoTopedidos->setTelefono($iduser->getTelefono());
+                    $contactoTopedidos->setProvincia($iduser->getProvincia());
+                    $contactoTopedidos->setDireccion($iduser->getDireccion());
+                    $contactoTopedidos->setFechaPedido(new \DateTime('now'));
+                    $contactoTopedidos->setEstado("incompleto");
+
+                        
+                      foreach ($filtroProducto as $productoid) {
+                        $contactoTopedido->setIdProducto($productoid);
+                      }
+                      foreach ($idestado as $pedidoid) {
+                        $contactoTopedido->setIdPedido($pedidoid);
+                      }
+                    $entityManager1->persist($contactoTopedidos);
+                    $entityManager1->flush();
+                    
+                  }}
+
 
           //Filtro del usuario
         $filtroUsuario=$this->getDoctrine()

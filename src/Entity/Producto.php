@@ -234,6 +234,7 @@ class Producto
         if (!$this->productoxpedidos->contains($productoxpedido)) {
             $this->productoxpedidos[] = $productoxpedido;
             $productoxpedido->setIdProducto($this);
+            $productoxpedido->setIdPedido($this);
         }
 
         return $this;
@@ -246,6 +247,9 @@ class Producto
             // set the owning side to null (unless already changed)
             if ($productoxpedido->getIdProducto() === $this) {
                 $productoxpedido->setIdProducto(null);
+            }
+            if ($productoxpedido->getIdPedidos() === $this) {
+                $productoxpedido->setIdPedidos(null);
             }
         }
 
