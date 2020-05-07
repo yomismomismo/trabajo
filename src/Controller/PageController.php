@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use App\Entity\{Mensaje,Comentario, Usuario, Producto, Productoxpedidos, Pedidos};
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\{MensajeType, ComentarioType, UsuarioType, ProductoxpedidoType};
@@ -151,12 +152,14 @@ class PageController extends AbstractController
                            ['id' => 'ASC']
                          );
           //Filtro del producto
+          $idpedido= 0;
           foreach ($usuarioIniciado as $usuariopedido) {
             $pedidos=$this->getDoctrine()
             ->getRepository(Pedidos::class)
             ->findOneBy(['id_cliente' => $usuariopedido]);
+             
           }
-          $idpedido=$pedidos->getId();
+              $idpedido=$pedidos->getId();
           $filtroProducto=$this->getDoctrine()
           ->getRepository(Producto::Class)
           ->findBy(
@@ -164,7 +167,7 @@ class PageController extends AbstractController
               ['id' => 'ASC']
             );
             $filtroPedido=$this->getDoctrine()
-            ->getRepository(Producto::Class)
+            ->getRepository(Pedidos::Class)
             ->findBy(
                 ['id' => $idpedido], 
                 ['id' => 'ASC']
@@ -195,11 +198,14 @@ class PageController extends AbstractController
             $entityManager1=$this->getDoctrine()->getManager();
               
             foreach ($filtroProducto as $productoid) {
-              $contactoTopedido->setIdPedido($productoid);
+              $contactoTopedido->setIdProducto($productoid);
             }
-            foreach ($filtroPedido as $pedidos1) {
-              $contactoTopedido->setIdProducto($pedidos1);
+            foreach ($filtroPedido as $pedidoid) {
+              $contactoTopedido->setIdPedido($pedidoid);
             }
+            // foreach ($filtroPedido as $pedidos1) {
+            //   $contactoTopedido->setIdPedido($pedidos1->getId());
+            // }
                 $entityManager1->persist($contactoTopedido);
                 $entityManager1->flush();  }  
             }}
@@ -274,8 +280,7 @@ class PageController extends AbstractController
             "user" => $user1, 
             "producto" => $filtroProducto,
             "puntuacion1" => "4",
-            "hola" => $pedidos,
-            "usuario"=> $idpedido
+
         ]);
             }
     }
