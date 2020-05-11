@@ -169,7 +169,6 @@ class PageController extends AbstractController
             $pedidos=$this->getDoctrine()
             ->getRepository(Pedidos::class)
             ->findOneBy(['id_cliente' => $iduser->getId()]);
-            echo($pedidos->getIdCliente()->getId());
 
             $estado=$this->getDoctrine()
             ->getRepository(Pedidos::class)
@@ -220,6 +219,8 @@ class PageController extends AbstractController
                   foreach ($idestado as $pedidoid) {
                     $contactoTopedido->setIdPedido($pedidoid);
                   }
+                  $entityManager1->persist($contactoTopedido);
+                    $entityManager1->flush();
                   // foreach ($filtroPedido as $pedidos1) {
                   //   $contactoTopedido->setIdPedido($pedidos1->getId());
                   // }
@@ -242,13 +243,6 @@ class PageController extends AbstractController
                     $contactoTopedidos->setFechaPedido(new \DateTime('now'));
                     $contactoTopedidos->setEstado("incompleto");
 
-                        
-                      foreach ($filtroProducto as $productoid) {
-                        $contactoTopedido->setIdProducto($productoid);
-                      }
-                      foreach ($idestado as $pedidoid) {
-                        $contactoTopedido->setIdPedido($pedidoid);
-                      }
                     $entityManager1->persist($contactoTopedidos);
                     $entityManager1->flush();
                     
