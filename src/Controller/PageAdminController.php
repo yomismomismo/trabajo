@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\{Usuario, Pedidos, Producto, Productoxpedido, Comentario};
+use App\Entity\{Usuario, Pedidos, Producto, Productoxpedidos, Comentario};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ProductoType;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,7 +134,7 @@ class PageAdminController extends AbstractController
             ['id' => 'ASC']
           );
           $productosFiltro=$this->getDoctrine()
-          ->getRepository(Productoxpedido::Class)
+          ->getRepository(Productoxpedidos::Class)
           ->findBy(
               ['id_pedido' => $id], 
               ['id' => 'ASC']
@@ -197,7 +197,7 @@ class PageAdminController extends AbstractController
             ['id' => 'ASC']
           );
           $productosFiltro=$this->getDoctrine()
-          ->getRepository(Productoxpedido::Class)
+          ->getRepository(Productoxpedidos::Class)
           ->findBy(
               ['id_pedido' => $id], 
               ['id' => 'ASC']
