@@ -49,7 +49,7 @@ class Productoxpedidos
         return $this;
     }
 
-    public function getIdPedido(): ?Producto
+    public function getIdPedido(): ?Pedidos
     {
         return $this->id_pedido;
     }

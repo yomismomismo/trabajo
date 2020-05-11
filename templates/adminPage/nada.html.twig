@@ -143,164 +143,115 @@ class PageController extends AbstractController
      */
     public function detalleprod(Request $request, $id, SessionInterface $session)
     {
-        //Mantenemos la sesión del usuario
-          $user1 = $session->get('nombre_usuario');
-
-        //Filtramos los comentarios de cada producto
-        $comentarios=$this->getDoctrine()
-        ->getRepository(Comentario::Class)
-        ->findBy(
-              ['id_producto' => $id, ], 
-              ['id' => 'ASC']
-                );
-
-        //Fin de filtro de los comentarios
-
+      $filtroProducto=$this->getDoctrine()
+      ->getRepository(Producto::Class)
+      ->findBy(
+          ['id' => $id], 
+          ['id' => 'ASC']
+        );
+        $idproducto="";
+      $user1 = $session->get('nombre_usuario');
         //Filtro Usuario  
-if ($user1) {
+     
 
-
-          $usuarioIniciado=$this->getDoctrine()
-                ->getRepository(Usuario::Class)
-                ->findBy(
-                      ['nombre' => $user1], 
-                      ['id' => 'ASC']
-                        );
-            
-          $iduser=$this->getDoctrine()
+       
+        $usuarioIniciado=$this->getDoctrine()
+                       ->getRepository(Usuario::Class)
+                       ->findBy(
+                           ['nombre' => $user1], 
+                           ['id' => 'ASC']
+                         );
+        
+              $iduser=$this->getDoctrine()
                 ->getRepository(Usuario::class)
-                ->findOneBy(['nombre' => $user1]);
+                 ->findOneBy(['nombre' => $user1]);
 
-          $idusuario= $iduser->getId();
+                 $idusuario= $iduser->getId();
 
-          $idusario=$this->getDoctrine()
-                ->getRepository(Usuario::class)
-                ->findOneBy(['id' => $idusuario]);
-            
+                 $idusario=$this->getDoctrine()
+                 ->getRepository(Usuario::class)
+                  ->findOneBy(['id' => $idusuario]);
                 
+          
         //Acaba Filtro de usuario
+
 
         //Filtro Pedido 
 
-          $pedidos=$this->getDoctrine()
-                ->getRepository(Pedidos::class)
-                ->findOneBy(['id_cliente' => $iduser->getId()]);
+            $pedidos=$this->getDoctrine()
+            ->getRepository(Pedidos::class)
+            ->findOneBy(['id_cliente' => $iduser->getId()]);
             
+          
+            $estado=$this->getDoctrine()
+            ->getRepository(Pedidos::class)
+             ->findOneBy(['estado' => "incompleto", 'id_cliente' => $idusario->getId()]);
+
+             
+             if ($estado && $pedidos) {
+             $idestado=$this->getDoctrine()
+             ->getRepository(Pedidos::class)
+              ->findBy(['id' => $estado->getId()]);
               
-          $estado=$this->getDoctrine()
-                ->getRepository(Pedidos::class)
-                ->findOneBy(
-                       ['estado' => "incompleto", 'id_cliente' => $idusario->getId()]);
-                      }else {
-                        $estado="";
-                        $pedidos="";
+                $idpedidoEstado=$estado->getId();
 
-                      }
-                     
-      if ( $estado && $pedidos) {
-
-          $idestado=$this->getDoctrine()
-                ->getRepository(Pedidos::class)
-                ->findBy(
-                       ['id' => $estado->getId()]);
-              
-          $idpedidoEstado=$estado->getId();
-
-          $idproducto=$this->getDoctrine()
+                $idproducto=$this->getDoctrine()
                 ->getRepository(Productoxpedidos::class)
-                ->findBy(
-                       ['id_pedido' => $idpedidoEstado]);
+                 ->findBy(['id_pedido' => $idpedidoEstado]);
+                // $productopedido=$idproducto->getIdProducto();
 
-          $idproductoRepe=$this->getDoctrine()
-                ->getRepository(Productoxpedidos::class)
-                ->findOneBy(
-                              ['id_pedido' => $idpedidoEstado, "id_producto" => $id]);  
+              $filtroPedido=$this->getDoctrine()
+              ->getRepository(Pedidos::Class)
+              ->findBy(
+                  ['id' => $idpedidoEstado], 
+                  ['id' => 'ASC']
+                );
 
-          $filtroPedido=$this->getDoctrine()
-                ->getRepository(Pedidos::Class)
-                ->findBy(
-                       ['id' => $idpedidoEstado], 
-                       ['id' => 'ASC']
-                      );}
-                
-          else{$idproducto="";
-            $idproductoRepe="";}
+        //Acaba Filtro de Pedido
+            // $filtroProductoxpedido=$this->getDoctrine()
+            // ->getRepository(Producto::Class)
+            // ->findBy(
+            //     ['id' => $productopedido], 
+            //     ['id' => 'ASC']
+            //   ); 
+        //Filtro productoxpedido
+
+        //Fin productoxpedido
         
         //Filtro producto 
 
-          $filtroProducto=$this->getDoctrine()
-                ->getRepository(Producto::Class)
-                ->findBy(
-                       ['id' => $id], 
-                       ['id' => 'ASC']
-                      );
 
-          $PedidoCreadoAhora="";
-
+          }
         //Acaba Filtro de producto
 
        //Envio de datos a la tabla productoxpedidos si hay un pedido incompleto
 
-          $contactoTopedido=new Productoxpedidos();
-          $actualizaCantidad=new Productoxpedidos();
-          $formpedido=$this->CreateForm(ProductoxpedidoType::Class, $contactoTopedido);
-          $formpedido->handleRequest($request);
-          $formcantidad=$this->CreateForm(ProductoxpedidoType::Class, $actualizaCantidad);
-          $formcantidad->handleRequest($request);
+            $contactoTopedido=new Productoxpedidos();
+            $formpedido=$this->CreateForm(ProductoxpedidoType::Class, $contactoTopedido);
+            $formpedido->handleRequest($request);
+            if ($user1) {
+            if ($pedidos  && $estado) {
             
-      if ($pedidos  && $estado) {
-            
-        if ($idusario->getId() == $pedidos->getIdCliente()->getId() && $estado){
+                if ($idusario->getId() == $pedidos->getIdCliente()->getId() && $estado){
                 
-            if($formpedido->isSubmitted() && $formpedido->isValid()){
 
+                if($formpedido->isSubmitted() && $formpedido->isValid()){
                   $entityManager1=$this->getDoctrine()->getManager();
                     
                   foreach ($filtroProducto as $productoid) {
-                     $contactoTopedido->setIdProducto($productoid);
+                    $contactoTopedido->setIdProducto($productoid);
                   }
-
                   foreach ($idestado as $pedidoid) {
-                     $contactoTopedido->setIdPedido($pedidoid);
+                    $contactoTopedido->setIdPedido($pedidoid);
                   }
-                  // && $mierda->getIdPedido()->getId() != $estado-getId()
-
-                if ($idproductoRepe) {
-                
-                  if ($idproductoRepe->getIdProducto()->getId() != $id) {
-                    $entityManager1->persist($contactoTopedido);
-                    $entityManager1->flush(); 
-                    return $this->redirectToRoute('detalleprod', [
-                      "id" => $id,
-                     
-             ]);
-
-                  }  
-                  else{ 
-                    foreach ($filtroProducto as $productoid) {
-                      $actualizaCantidad->setIdProducto($productoid);
-                   }
- 
-                   foreach ($idestado as $pedidoid) {
-                      $actualizaCantidad->setIdPedido($pedidoid);
-                   }  
-                   $actualizaCantidad->setCantidad($actualizaCantidad->getCantidad() + $idproductoRepe->getCantidad());
-                   $entityManager1->remove($idproductoRepe);
-                    $entityManager1->persist($actualizaCantidad);
-                  $entityManager1->flush();};
-                  return $this->redirectToRoute('detalleprod', [
-                    "id" => $id]);
-            }
-         
-          else{
-
-                    $entityManager1->persist($contactoTopedido);
-                    $entityManager1->flush(); 
-                    return $this->redirectToRoute('detalleprod', [
-                      "id" => $id]);
-          }
-          } }
-        }
+                  // foreach ($filtroPedido as $pedidos1) {
+                  //   $contactoTopedido->setIdPedido($pedidos1->getId());
+                  // }
+                  $entityManager1->persist($contactoTopedido);
+                  $entityManager1->flush();  }  
+                  
+                  
+          } }} 
 
         //Finaliza el envio de datos a la tabla productoxpedido
 
@@ -326,24 +277,18 @@ if ($user1) {
                     $PedidoCreadoAhora="True";
                     $entityManager1->persist($contactoTopedidos);
                     $entityManager1->flush();
-                    return $this->redirectToRoute('detalleprod', [
-                      "id" => $id]);
                   }
 
         //Finaliza el crear el pedido
 
         //Creamos los productos del pedido creado ahora mismo
                 }
-
-                
-            //     $cantidadActualizada= $idproductoRepe->getCantidad() + 2;    
-            // echo($cantidadActualizada);
-      
+                $PedidoCreadoAhora="";
                 if ($PedidoCreadoAhora) {
                  
                 $estado=$this->getDoctrine()
                   ->getRepository(Pedidos::class)
-                  ->findOneBy(['estado' => "incompleto", 'id_cliente' => $idusario->getId()]);
+                  ->findOneBy(['estado' => "incompleto", 'id_cliente' =>      $idusario->getId()]);
 
                 $idestado=$this->getDoctrine()
                   ->getRepository(Pedidos::class)
@@ -364,26 +309,19 @@ if ($user1) {
                 foreach ($idestado as $pedidoid) {
                   $contactoTopedido->setIdPedido($pedidoid);
                 }
-
                 $entityManager1->persist($contactoTopedido);
                 $entityManager1->flush();
-                return $this->redirectToRoute('detalleprod', [
-                  "id" => $id,
-                 
-         ]);
-        
-       }
-
+              }
         //Finalizado crear productos en el pedido
 
         //Filtro del usuario
 
-                // $filtroUsuario=$this->getDoctrine()
-                // ->getRepository(Usuario::Class)
-                // ->findBy(
-                //     ['id' => "1"], 
-                //     ['id' => 'ASC']
-                //   );
+                $filtroUsuario=$this->getDoctrine()
+                ->getRepository(Usuario::Class)
+                ->findBy(
+                    ['id' => "1"], 
+                    ['id' => 'ASC']
+                  );
 
         //Acaba filtro del usuario
 
@@ -396,18 +334,14 @@ if ($user1) {
         if($form->isSubmitted() && $form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $contactoTo->setFecha(new \DateTime('now'));
-
-                $contactoTo->setIdUsuario($iduser);
-           
+            foreach ($filtroUsuario as $userid) {
+                $contactoTo->setIdUsuario($userid);
+              }
               foreach ($filtroProducto as $productoid) {
                 $contactoTo->setIdProducto($productoid);
               }
             $entityManager->persist($contactoTo);
-            $entityManager->flush();
-            return $this->redirectToRoute('detalleprod', [
-              "id" => $id,
-             
-     ]);}
+            $entityManager->flush();}
             //Acaba formulario del comentario
 
           //Inicio de sesión de usuario
@@ -439,20 +373,33 @@ if ($user1) {
 
    }
       //Fin inicio de sesión de usuario
+
+      if ($user1) {
+        return $this->render('page/detalleProduct.html.twig', [
+          'controller_name' => 'PageController',
+          'page' => 'detalle',
+          'form' => $form->CreateView(),
+          'form1' => $formpedido->CreateView(),
+          'jumbotron' => 'no',
+          "user" => "",
+          "user" => $user1, 
+          "producto"=>"",
+          "producto" => $filtroProducto,
+          "puntuacion1" => "4",
+          
+          "filtroPedido" => $idproducto
+
+      ]);
+      }
             else{
         return $this->render('page/detalleProduct.html.twig', [
             'controller_name' => 'PageController',
             'page' => 'detalle',
-            'form' => $form->CreateView(),
-            'form1' => $formpedido->CreateView(),
             'jumbotron' => 'no',
             "user" => "",
             "user" => $user1, 
+            "puntuacion1" => "4",
             "producto" => $filtroProducto,
-            "puntuacion1" => "3",
-            "filtroPedido" => $idproducto,
-            "Comentario" => $comentarios,
-
 
         ]);
             }
