@@ -24,18 +24,7 @@
                                     <div class="card-body">
                                         <div class="text-center"> 
                                             {% for productos in producto %}
-
-                                            <!-- La variable imagen separa los datos que recibe de la base de datos en un array -->
-					                            {% set imagen = productos.imagen|split('|') %}
-		                                    <!-- For rutaImg saca el primer dato del array que debe ser siempre la ruta de la imagen -->
-					                            {% set ruta = "" %}
-					                            {% for rutaImg in imagen|slice(0, 1) %}
-						                            {% set ruta = rutaImg %}
-					                            {% endfor %}
-
-                                                   {% for imagen in imagen|slice(1) %}
-						  	                            <img src="{{ruta}}{{imagen}}" width="200"/>
-    					                            {% endfor %}
+                                            <img src="{{productos.imagen}}" width="200" />
                                             <h4 class="card-title mt-10">{{productos.nombre}}</h4>
                                             <div class="row text-center justify-content-md-center">
                                                 <div class="col-4"><a href="javascript:void(0)" class="link"><i class="ik ik-user"></i> <font class="font-medium">254</font></a></div>
@@ -157,8 +146,6 @@
                                         </div>
                                         <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
                                             <div class="card-body">
-                                            
-                                            
                                                 {{form_start(form, {'attr':{'class':"form-horizontal", 'action':'', "id":"subirForm", "autocomplete":"on"}})}}
                                                 {# <form class="form-horizontal"> #}
                                                     <div class="form-group">

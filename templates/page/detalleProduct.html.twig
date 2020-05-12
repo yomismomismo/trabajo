@@ -23,66 +23,78 @@
 	        <div class="heading-section">
 	            <h2>Product Details</h2>
 	        </div>
-			
-	<!-- Inicio de for que saca los datos de la base de datos -->
-		{% for productos in producto %}
-		<!-- La variable imagen separa los datos que recibe de la base de datos en un array -->
-					{% set imagen = productos.imagen|split('|') %}
-		<!-- For rutaImg saca el primer dato del array que debe ser siempre la ruta de la imagen -->
-					{% set ruta = "" %}
-					{% for rutaImg in imagen|slice(0, 1) %}
-						{% set ruta = rutaImg %}
-					{% endfor %}
-    					
 	        <div class="row">
 	        	<div class="col-md-6">
 					<div id="slider" class="owl-carousel product-slider">
-					<!-- For para añadir la imagen en grande del producto -->
-						<!-- slice(1) para que empiece por la imagen y no por la ruta -->
-					    {% for imagen in imagen|slice(1) %}
-        				<div class="item">
-						  	<img src="{{ruta}}{{imagen}}" />
+						<div class="item">
+						  	<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
 						</div>
-    					{% endfor %}
-
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
 					</div>
 					<div id="thumb" class="owl-carousel product-thumb">
-
-					<!-- For para añadir la imagen en el slider -->
-						<!-- slice(1) para que empiece por la imagen y no por la ruta -->
-						   {% for imagen in imagen|slice(1) %}
-        				<div class="item">
-						  	<img src="{{ruta}}{{imagen}}" />
+						<div class="item">
+						  	<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
 						</div>
-    					{% endfor %}
-
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
+						<div class="item">
+						  	<img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
+						</div>
+						<div class="item">
+						  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
+						</div>
 					</div>	  
 				  
 	        	</div>
 	        	<div class="col-md-6">
 	        		<div class="product-dtl">
         				<div class="product-info">
-												
-		        			<div class="product-name" id="nameprod">{{productos.nombre}}</div>
+		        			<div class="product-name">Variable Product</div>
 		        			<div class="reviews-counter">
 								<div class="rate">
-								    <input type="radio" id="star5" name="rate" value="5" disabled {% if puntuacion1 == "5" %} checked {% endif %}/>
+								    <input type="radio" id="star5" name="rate" value="5" />
 								    <label for="star5" title="text">5 stars</label>
-								    <input type="radio" id="star4" name="rate" value="4" disabled {% if puntuacion1 == "4" %} checked {% endif %}/>
+								    <input type="radio" id="star4" name="rate" value="4"/>
 								    <label for="star4" title="text">4 stars</label>
-								    <input type="radio" id="star3" name="rate" value="3" disabled {% if puntuacion1 == "3" %} checked {% endif %}/>
+								    <input type="radio" id="star3" name="rate" value="3"  checked/>
 								    <label for="star3" title="text">3 stars</label>
-								    <input type="radio" id="star2" name="rate" value="2" disabled {% if puntuacion1 == "2" %} checked {% endif %}/>
+								    <input type="radio" id="star2" name="rate" value="2" />
 								    <label for="star2" title="text">2 stars</label>
-								    <input type="radio" id="star1" name="rate" value="1" disabled{% if puntuacion1 == "1" %} checked {% endif %}/>
+								    <input type="radio" id="star1" name="rate" value="1" />
 								    <label for="star1" title="text">1 star</label>
 								  </div>
 								<span>3 Reviews</span>
 							</div>
-		        			<div class="product-price"><span id="product-price-detalle">{{productos.precio}} €</span></div>
-							{# <span class="line-through">$29.00</span> #}
+		        			<div class="product-price-discount"><span>$39.00</span><span class="line-through">$29.00</span></div>
 		        		</div>
-	        			<p>{{productos.descripcion}}</p>
+	        			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 	        			<div class="row">
 	        				{# <div class="col-md-6">
 	        					<label for="size">Size</label>
@@ -102,21 +114,8 @@
 								</select>
 	        				</div> #}
 	        			</div>
-							
 	        			<div class="product-count">
 	        				<label for="size">Quantity</label>
-	        				{# <form action="#" class="display-flex"> #}
-							{% if user %}
-							{{form_start(form1, {'attr':{'class':"display-flex", "action":""}})}}
-							    <div class="qtyminus">-</div>
-								{{form_widget(form1.cantidad, {'attr':{'class':'qty', "name":"quantity", "type":"text", "value":"1", "style":"height: 34px;"}})}}
-							    <div class="qtyplus">+</div><br>
-								 {{form_widget(form1.send, {'attr':{'class':'round-black-btn', 'placeholder':'Enviar Comentario',  'type':'submit', "style":"margin-top: 49px;
-margin-left: -129px;"}})}}
-							{{form_end(form1)}} 
-
-							{% else %}
-							<div class="product-count">
 	        				<form action="#" class="display-flex">
 							    <div class="qtyminus">-</div>
 							    <input type="text" name="quantity" value="1" class="qty">
@@ -124,13 +123,7 @@ margin-left: -129px;"}})}}
 							</form>
 							<a href="#" class="round-black-btn">Add to Cart</a>
 	        			</div>
-
-							{% endif %}
-							{# </form> #}
-							 {# <a href="#" class="round-black-btn" id="addcart">Add to Cart</a> #}
-	        			</div>
 	        		</div>
-
 	        	</div>
 	        </div>
 	        <div class="product-info-tabs">
@@ -139,66 +132,17 @@ margin-left: -129px;"}})}}
 				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" 
-						{% set contadorComent = 0 %}
-						{% for comentarios in Comentario %}
-							{% set contadorComent = contadorComent + 1 %}
-						{% endfor %}
-				aria-controls="review" aria-selected="false">comentarios ({{contadorComent}})</a>
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
 				  	</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-				  		{{productos.descripcion}}
+				  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
 				  	</div>
-			{% endfor %}
-	<!-- fin de for que saca los datos de la base de datos -->
-
 				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-				  		<div class="review-heading">COMENTARIOS</div>
-						  <br>
-						  {% if Comentario == "" %}
+				  		<div class="review-heading">REVIEWS</div>
 				  		<p class="mb-20">There are no reviews yet.</p>
-						  {% else %}
-						  	{% set contador = 0 %}
-							{% set star = "star" %}
-							{% for comentarios in Comentario %}
-							<article style="background-color:white; height:120px; display:grid;height:auto; margin-botom:30px;margin-top: 25px;
-							border-radius: 7px; margin-bottom: 34px;">
-							<br>
-							<br>
-								<b><p style="margin-left:20px;margin-top: 10px;">{{comentarios.getIdUsuario().getnombre()}} {{comentarios.getIdUsuario().getapellido()}}</p></b>
-								<p style="margin-left:40px;">{{comentarios.getComentario()}}
-								{# {% set star = "star" %} #}
-								<div class="rate" style="position:relative;">
-								<span style="margin-left: 20px; margin-top:20px">{{comentarios.getFecha()|date('d-m-Y H:i')}}</span>
-								    <input type="radio" id="star5{{contador}}" name="rate{{contador}}" value="5" disabled {% if comentarios.getPuntuacion() == "5" %} checked {% endif %}/>
-								    <label for="star5{{contador}}" id="hoverlabeldisabled" title="text">5 stars</label>
-								    <input type="radio" id="star4{{contador}}"  name="rate{{contador}}" value="4" disabled {% if comentarios.getPuntuacion() == "4" %} checked {% endif %}/>
-								    <label for="star4{{contador}}" title="text" id="hoverlabeldisabled">4 stars</label>
-								    <input type="radio" id= "star3{{contador}}" name="rate{{contador}}" value="3" disabled {% if comentarios.getPuntuacion() == "3" %} checked {% endif %}/>
-								    <label for="star3{{contador}}" title="text" id="hoverlabeldisabled">3 stars</label>
-								    <input type="radio" id="star2{{contador}}" name="rate{{contador}}" value="2" disabled {% if comentarios.getPuntuacion() == "2" %} checked {% endif %}/>
-								    <label for="star2{{contador}}" title="text" id="hoverlabeldisabled">2 stars</label>
-								    <input type="radio" id="star1{{contador}}" name="rate{{contador}}" value="1" disabled {% if comentarios.getPuntuacion() == "1" %} checked {% endif %}/>
-								    <label for="star1{{contador}}" title="text" id="hoverlabeldisabled">1 star</label>
-									
-									{# {{comentarios.fecha|date("m/d/Y")}} #}
-								</div>
-								</p>
-									
-								
-								<br>
-							  </article>
-						
-					
-						{% set contador =  contador + 1 %}
-							{% endfor %}
-							
-						{% endif %}
-
 				  		{# <form class="review-form"> #}
-						  {% if user %}
 						   {{form_start(form, {'attr':{'class':"review-form", "action":""}})}}
 		        			<div class="form-group">
 			        			<label>Your rating</label>
@@ -211,41 +155,29 @@ margin-left: -129px;"}})}}
 		        			<div class="form-group">
 			        			<label>Your message</label>
 								{{form_widget(form.comentario, {'attr':{'class':"form-control", 'required':'', 'rows':'10'}})}}
-			        			
+			        			{# <textarea class="form-control" rows="10"></textarea> #}
 			        		</div>
-			        		{#  #}
+			        		{# <div class="row">
+				        		<div class="col-md-6">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Name*">
+					        		</div>
+					        	</div>
+				        		<div class="col-md-6">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
+					        		</div>
+					        	</div>
+					        </div> #}
 							 {{form_widget(form.send, {'attr':{'class':'round-black-btn', 'placeholder':'Enviar Comentario',  'type':'submit'}})}}
+							 {# {{form_widget(form.id_usuario, {'attr':{'class':'round-black-btn', 'value':'hola'}})}} #}
+							 {# {{form_widget(form.id_usuario, {'attr':{'class':"rate", 'id':'star', 'name':'sta1', 'required':''}})}}
+							 {{form_widget(form.id_producto, {'attr':{'class':"rate", 'id':'star', 'name':'sta2', 'required':''}})}} #}
+							{# {{form_widget(form.id_producto, {'attr':{'class':'round-black-btn', 'value':'hola'}})}} #}
+					        {# <button class="round-black-btn">Submit Review</button> #}
 
 							{{form_end(form)}}
-
-							{% else %}
-							<form class="review-form">
-								<div class="form-group">
-			        			<label>Your rating</label>
-			        			<div class="reviews-counter">
-									<div class="rate">
-									    <input type="radio" id="star5" name="rate" value="5" />
-									    <label for="star5" title="text">5 stars</label>
-									    <input type="radio" id="star4" name="rate" value="4" />
-									    <label for="star4" title="text">4 stars</label>
-									    <input type="radio" id="star3" name="rate" value="3" />
-									    <label for="star3" title="text">3 stars</label>
-									    <input type="radio" id="star2" name="rate" value="2" />
-									    <label for="star2" title="text">2 stars</label>
-									    <input type="radio" id="star1" name="rate" value="1" />
-									    <label for="star1" title="text">1 star</label>
-									</div>
-									
-								</div>
-							</div>
-							<textarea class="form-control" rows="10"></textarea>
-					        
-							  <button class="round-black-btn">Submit Review</button>
-			        	</form>
-							{% endif %}
-
-
-
+			        	{# </form> #}
 				  	</div>
 				</div>
 			</div>
