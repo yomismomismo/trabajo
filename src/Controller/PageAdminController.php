@@ -3,7 +3,9 @@
 namespace App\Controller;
 use App\Entity\{Usuario, Pedidos, Producto, Productoxpedidos, Comentario};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\ProductoType;
+use App\Form\{ProductoType, UsuarioType};
+use Symfony\Component\Form\FormTypeInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\{MensajeRepository, PedidosRepository, UsuarioRepository, ComentarioRepository, ProductoRepository};
@@ -128,9 +130,9 @@ class PageAdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/page/admin/detalleUsuarios/{id}", name="detalleUsuarios", methods={"GET","POST"})
+     * @Route("/page/admin/detalleUsuarios/{id}/{currentPage?1}", name="detalleUsuarios", methods={"GET","POST"})
      */
-    public function detalleUsuarios(Request $request, $id)
+    public function detalleUsuarios($id, $currentPage,Request $request, EntityManagerInterface $entityManager, Usuario $usuario)
     {
         $equiposFiltro=$this->getDoctrine()
         ->getRepository(Usuario::Class)
@@ -138,10 +140,36 @@ class PageAdminController extends AbstractController
             ['id' => $id], 
             ['id' => 'ASC']
           );
+          $comentarioUsuario=$this->getDoctrine()
+          ->getRepository(Comentario::Class)
+          ->findBy(
+              ['id_usuario' => $id], 
+              ['id' => 'ASC']
+            );
+          $pedidoUsuario=$this->getDoctrine()
+            ->getRepository(Pedidos::Class)
+            ->findBy(
+                ['id_cliente' => $id], 
+                ['id' => 'ASC']
+              );
+        $form=$this->CreateForm(UsuarioType::Class, $usuario);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('detalleUsuarios', [
+                "id" => $id,
+               
+       ]);
+        }
         return $this->render('adminPage/detalleUsuario.html.twig', [
             'controller_name' => 'PageAdminController',
             'usuario' => $equiposFiltro,
-
+            'comentarioUsuario' => $comentarioUsuario,
+            'currentPage' => $currentPage,
+            'data' => $comentarioUsuario,
+            'id' => $id,
+            'pedidoUsuario' => $pedidoUsuario,
+            'form' => $form->CreateView(),
         ]);
     }
 
@@ -175,7 +203,8 @@ class PageAdminController extends AbstractController
             'controller_name' => 'PageAdminController',
             'productos' => $productosFiltro,
             'idpedido'=> $id,
-            'cliente' => $idcliente
+            'cliente' => $idcliente,
+          
 
         ]);
     }

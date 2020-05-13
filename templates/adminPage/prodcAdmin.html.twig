@@ -40,18 +40,7 @@
                                                               <tr>
                                                                <td>
                                                                 <div class="d-inline-block align-middle">
-                                                                     <!-- La variable imagen separa los datos que recibe de la base de datos en un array -->
-					                                                    {% set imagen = producto.imagen|split('|') %}
-		                                                            <!-- For rutaImg saca el primer dato del array que debe ser siempre la ruta de la imagen -->
-					                                                    {% set ruta = "" %}
-					                                                    {% for rutaImg in imagen|slice(0, 1) %}
-						                                                    {% set ruta = rutaImg %}
-					                                                    {% endfor %}
-
-                                                                        {% for imagen in imagen|slice(1,1) %}
-                                                                            <img src="{{ruta}}{{imagen}}" alt="" class="align-top mr-15" style="width: 100px"/>
-                                                                        {% endfor %}
-                                                                    
+                                                                    <img src="{{ producto.imagen }}" alt="" class="align-top mr-15" style="width: 100px">
                                                                 </div>
                                                                 </td>
                                                                 <td>{{ producto.nombre }}</td>
@@ -61,6 +50,7 @@
                                                                 <td>{{ producto.UnidadesStock }}</td>
                                                                 <td>
                                                                      <a href="{{ path('detalleProducto', {'id': producto.id}) }}"><i class="ik ik-edit f-16 mr-15 text-green"></i></a>
+                                                                    <a href="{{ path('producto_edit', {'id': producto.id}) }}"><i class="ik ik-edit f-16 mr-15 text-green"></i></a>
                                                                     {{ include('producto/_delete_form.html.twig') }}
                                                                 </td>
                                                                 {# <td>{{ include('producto/_delete_form.html.twig') }}</td>
