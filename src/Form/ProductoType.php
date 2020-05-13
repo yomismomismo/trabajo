@@ -16,6 +16,9 @@ class ProductoType extends AbstractType
             ->add('nombre')
             ->add('descripcion')
             ->add('unidades_stock')
+        //     ->add('unidades_vendidas', HiddenType::class, [
+        //     'data' => '0',
+        // ])
             ->add('precio')
             ->add('categoria',ChoiceType::class, [
                 'choices' => [
@@ -27,6 +30,7 @@ class ProductoType extends AbstractType
 
             ->add('send', SubmitType::class,['label' => 'Actualizar'])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

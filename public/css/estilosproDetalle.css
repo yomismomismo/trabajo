@@ -269,3 +269,6 @@
 }
 #hoverlabeldisabled:hover{color:none !important;
 	pointer-events: none !important;}
+#hoverlabeldisabled:checked{color:none !important;
+		pointer-events: none !important;}
+

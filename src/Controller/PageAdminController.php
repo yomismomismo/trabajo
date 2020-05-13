@@ -26,6 +26,30 @@ class PageAdminController extends AbstractController
     }
 
     /**
+     * @Route("/page/upload", name="upload")
+     */
+    public function upload()
+    {
+
+        return $this->render('adminPage/upload.html', [
+            'controller_name' => 'PageAdminController',
+            
+             ]);
+    }
+
+    /**
+     * @Route("/page/php", name="php")
+     */
+    public function php()
+    {
+
+        return $this->render('adminPage/upload.html.twig', [
+            'controller_name' => 'PageAdminController',
+            
+             ]);
+    }
+
+    /**
      * @Route("/page/admin/productosAdmin", name="productosAdmin")
      */
     public function productosAdmin(ProductoRepository $productoRepository, ComentarioRepository $comentarioRepository )
@@ -152,6 +176,34 @@ class PageAdminController extends AbstractController
             'productos' => $productosFiltro,
             'idpedido'=> $id,
             'cliente' => $idcliente
+
+        ]);
+    }
+
+    /**
+     * @Route("/page/admin/newProducto", name="newProducto")
+     */
+    public function newProducto(Request $request)
+    {
+          
+    $producto = new Producto();
+    $form = $this->createForm(ProductoType::class, $producto);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($producto);
+        $producto->setUnidadesVendidas(0);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('productosAdmin');
+    }
+
+        return $this->render('adminPage/newProducto.html.twig', [
+           
+            'form' => $form->createView(),
+            'controller_name' => 'PageAdminController',
+
 
         ]);
     }
